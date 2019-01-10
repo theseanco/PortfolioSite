@@ -33,7 +33,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         // Create pages for each markdown file.
         result.data.allContentfulCategory.edges.forEach(({ node }) => {
-          const path =  `/${node.slug}`
+          const path = node.slug
           createPage({
             path,
             component: blogPostTemplate,
