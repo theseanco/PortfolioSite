@@ -31,4 +31,45 @@ result.data.allContentfulCategory.edges.forEach(({ node }) => {
               path,
             },
           })
-        })
+          })
+
+Query from inside Category.js to get all posts in that categoryPath
+
+query getCategoryInfo($categoryPath: String){
+  contentfulCategory(slug: {eq: $categoryPath}) {
+    id
+    categoryName
+    works {
+      title
+      summary {
+        internal {
+          content
+        }
+      }
+    }
+  }
+}
+
+
+And a query to try to get the images for use in a fluid divo
+
+query getCategoryInfo($categoryPath: String){
+  contentfulCategory(slug: {eq: $categoryPath}) {
+    id
+    categoryName
+    works {
+      title
+      featuredImage {
+        id
+        fluid {
+          ...GatsbyContentfulFluid
+        }
+      }
+      summary {
+        internal {
+          content
+        }
+      }
+    }
+  }
+}
