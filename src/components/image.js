@@ -33,7 +33,6 @@ const Image = () => (
 
     `}
     render={data => {
-      console.log(data)
       return(
       <Img fluid={data.allContentfulAuthor.edges[0].node.headshot.fluid} />)
     }

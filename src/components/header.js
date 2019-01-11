@@ -26,6 +26,11 @@ const Header = ({ siteTitle }) => (
         >
           {siteTitle}
         </Link>
+
+        <Link
+          to="/about"
+          >About</Link>
+
       </h1>
     </div>
   </div>
@@ -38,5 +43,6 @@ Header.propTypes = {
 Header.defaultProps = {
   siteTitle: ``,
 }
+
 
 export default Header
