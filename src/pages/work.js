@@ -14,4 +14,21 @@ const SecondPage = ({data}) => (
   </Layout>
 )
 
+const query = graphql`
+query getCategoryInfo($path: String){
+  contentfulCategory(slug: {eq: $path}) {
+    id
+    categoryName
+    works {
+      title
+      summary {
+        internal {
+          content
+        }
+      }
+    }
+  }
+}
+`
+
 export default SecondPage

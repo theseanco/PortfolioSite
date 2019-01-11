@@ -4,7 +4,7 @@ import { Link, graphql } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
-const SecondPage = ({data}) => (
+const CategoryPage = ({data}) => (
   <Layout>
   {console.log(data)}
     <SEO title="Page two" />
@@ -14,5 +14,22 @@ const SecondPage = ({data}) => (
   </Layout>
 )
 
+export const query = graphql`
+query getCategoryInfo($categoryPath: String){
+  contentfulCategory(slug: {eq: $categoryPath}) {
+    id
+    categoryName
+    works {
+      title
+      summary {
+        internal {
+          content
+        }
+      }
+    }
+  }
+}
+`
 
-export default SecondPage
+
+export default CategoryPage
