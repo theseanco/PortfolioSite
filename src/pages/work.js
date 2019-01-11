@@ -4,31 +4,57 @@ import { Link, graphql } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
-const SecondPage = ({data}) => (
+const WorkPage = ({data}) => (
   <Layout>
   {console.log(data)}
     <SEO title="Page two" />
-    <h1>Post</h1>
-    <p>Welcome to page 2</p>
+    <h1>{data.getWorkInfo.title}</h1>
+    {data.getWorkInfo.description.description}
+    <ul>
+      {
+        data.getWorkInfo.technologies.map((data, index) => {
+          return (
+            <li key={index}>{data}</li>
+          )
+        })
+      }
+    </ul>
+    <p>
+      <a href={data.getWorkInfo.link}>Visit Site</a>
+    </p>
+    <p>
+      <Link to={data.getParentCategory.slug}>
+        Back to {data.getParentCategory.categoryName}
+      </Link>
+    </p>
     <Link to="/">Go back to the homepage</Link>
   </Layout>
 )
 
-const query = graphql`
-query getCategoryInfo($path: String){
-  contentfulCategory(slug: {eq: $path}) {
-    id
-    categoryName
-    works {
-      title
-      summary {
-        internal {
-          content
+export const query = graphql`
+  query getWorkContents(
+      $pageSlug: String,
+      $parentSlug: String
+    ){
+      getWorkInfo: contentfulWork(slug: {eq: $pageSlug}) {
+        id
+        title
+        featuredImage {
+          id
         }
+        description {
+          id
+          description
+        }
+        technologies
+        link
+      }
+      getParentCategory: contentfulCategory(slug: {eq: $parentSlug}){
+        id
+        slug
+        categoryName
       }
     }
-  }
-}
 `
 
-export default SecondPage
+export default WorkPage

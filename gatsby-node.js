@@ -74,7 +74,9 @@ exports.createPages = ({ graphql, actions }) => {
                 component: workComponent,
                 context: {
                   //This is given as the workPath so that a graphQL query can be lodged against it./
-                  pageSlug: workPath
+                  pageSlug: workPath,
+                  //This is also given the parent path to assist in navigation
+                  parentSlug: categoryPath
                 }
               })
             })

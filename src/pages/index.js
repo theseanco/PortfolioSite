@@ -15,14 +15,13 @@ const IndexPage = ({ data }) => (
     {
       data.contentfulHomepage.categories.map((data) => {
         return (
-          <p>{data.categoryName}</p>
+          <p key={data.id}><Link to={data.slug}>{data.categoryName}</Link></p>
         )
       })
     }
     <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
       <Image />
     </div>
-    <Link to="/page-2/">Go to page 2</Link>
   </Layout>
 )
 
@@ -32,6 +31,8 @@ export const query = graphql`
     homepageTitle
     categories {
       categoryName
+      id
+      slug
     }
   }
 }

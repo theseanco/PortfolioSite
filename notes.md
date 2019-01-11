@@ -73,3 +73,30 @@ query getCategoryInfo($categoryPath: String){
     }
   }
 }
+
+
+Two queries to go within the work component. One to get the work info, and the other to get the parent category
+
+query getWorkContents($pageSlug: String){
+  contentfulWork(slug: {eq: $pageSlug}) {
+    id
+    title
+    featuredImage {
+      id
+    }
+    description {
+      id
+      description
+    }
+    technologies
+    link
+  }
+}
+
+query getParentCategoryInfo($parentSlug: String){
+  contentfulCategory(slug: {eq: $parentSlug}) {
+    id
+    categoryName
+    slug
+  }
+}
