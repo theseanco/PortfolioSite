@@ -11,20 +11,30 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   return new Promise((resolve, reject) => {
-    const blogPostTemplate = nodePath.resolve(`src/pages/post-lorem.js`)
+    const categoryComponent = nodePath.resolve(`src/pages/category.js`)
+    const authorComponent = nodePath.resolve(`src/pages/author.js`)
+    const workComponent = nodePath.resolve(`src/pages/work.js`)
     // Query for markdown nodes to use in creating pages.
     resolve(
       graphql(
         `
-          {
-            allContentfulCategory {
-              edges {
-                node {
+        {
+          allContentfulHomepage {
+            edges {
+              node {
+                categories {
+                  slug
+                  works {
+                    slug
+                  }
+                }
+                authorPage {
                   slug
                 }
               }
             }
           }
+        }
         `
       ).then(result => {
         if (result.errors) {
@@ -32,16 +42,42 @@ exports.createPages = ({ graphql, actions }) => {
         }
 
         // Create pages for each markdown file.
-        result.data.allContentfulCategory.edges.forEach(({ node }) => {
-          const path = node.slug
+        result.data.allContentfulHomepage.edges.forEach(({ node }) => {
+          //Handle creating the author page
+          const authorPath = node.authorPage.slug;
           createPage({
-            path,
-            component: blogPostTemplate,
-            // In your blog post template's graphql query, you can use path
-            // as a GraphQL variable to query for data from the markdown file.
+            path: authorPath,
+            component: authorComponent,
             context: {
-              path,
-            },
+              pageSlug: authorPath
+            }
+          })
+
+          node.categories.forEach(category => {
+            console.log(category)
+            //path of category tree
+            const categoryPath = category.slug;
+            //generate page for categories
+            createPage({
+              path: categoryPath,
+              component: categoryComponent,
+              context: {
+                pageSlug: categoryPath
+              }
+            })
+            category.works.forEach(work => {
+              //path of work tree
+              const workPath = work.slug;
+              const combinedPath = `${categoryPath}/${workPath}`
+              createPage({
+                path: combinedPath,
+                component: workComponent,
+                context: {
+                  //This is given as the workPath so that a graphQL query can be lodged against it./
+                  pageSlug: workPath
+                }
+              })
+            })
           })
         })
       })
