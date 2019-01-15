@@ -20,7 +20,7 @@ const WorkPage = ({data}) => (
       }
     </ul>
     <p>
-      <a href={data.getWorkInfo.link}>Visit Site</a>
+      <a href={data.getWorkInfo.link} target="_blank">Visit Site</a>
     </p>
     <p>
       <Link to={data.getParentCategory.slug}>

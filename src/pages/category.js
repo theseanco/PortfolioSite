@@ -16,7 +16,10 @@ const CategoryPage = ({data}) => (
         return (
           <li key={work.id}>
           <Link to={`/${data.contentfulCategory.slug}/${work.slug}`}><h3>{work.title}</h3></Link>
-          {work.summary.internal.content}
+
+          {
+            work.summary.internal.content
+          }
           <Img fluid={work.featuredImage.fluid} />
           </li>
           )

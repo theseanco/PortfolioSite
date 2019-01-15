@@ -1,7 +1,21 @@
+:root {
+  --blue: #011627;
+  --white: #FDFFFC;
+  --teal: #2EC4B6;
+  --rose: #E71D36;
+  --yellow: #FF9F1C;
+  --color1: #011627;
+  --color2: #CDCECC;
+  --color3: #2EC4B6;
+  --color4: #E71D36;
+  --color5: #FF9F1C;
+}
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  background-color: var(--color1);
 }
 body {
   margin: 0;
@@ -197,7 +211,7 @@ html {
   box-sizing: inherit;
 }
 body {
-  color: hsla(0, 0%, 0%, 0.8);
+  color: var(--color2);
   font-family: georgia, serif;
   font-weight: normal;
   word-wrap: break-word;

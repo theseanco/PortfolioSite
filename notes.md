@@ -68,7 +68,8 @@ query getCategoryInfo($categoryPath: String){
       summary {
         internal {
           content
-        }
+        }    <Link to="/page-2/">Go to page 2</Link>
+
       }
     }
   }
@@ -77,26 +78,37 @@ query getCategoryInfo($categoryPath: String){
 
 Two queries to go within the work component. One to get the work info, and the other to get the parent category
 
-query getWorkContents($pageSlug: String){
-  contentfulWork(slug: {eq: $pageSlug}) {
-    id
-    title
-    featuredImage {
+query getWorkContents(
+    $pageSlug: String,
+    $parentSlug: String
+  ){
+    getWorkInfo: contentfulWork(slug: {eq: $pageSlug}) {
       id
+      title
+      featuredImage {
+        id
+      }
+      description {
+        id
+        description
+      }
+      technologies
+      link
     }
-    description {
+    getParentCategory: contentfulCategory(slug: {eq: $parentSlug}){
       id
-      description
+      slug
+      categoryName
     }
-    technologies
-    link
   }
-}
 
-query getParentCategoryInfo($parentSlug: String){
-  contentfulCategory(slug: {eq: $parentSlug}) {
-    id
-    categoryName
-    slug
-  }
-}
+
+Color Pallette: https://coolors.co/011627-fdfffc-2ec4b6-e71d36-ff9f1c
+
+#011627 - Maastricht Blue
+#FDFFFC - Baby Powder
+#2EC4B6 - Maximum Blue Green
+#E71D36 - Rose Madder
+#FF9F1C - Crayola
+
+These are given global variables by importing it within the global stylesheet.
