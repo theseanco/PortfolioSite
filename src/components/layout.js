@@ -1,9 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
+import { TypographyStyle, GoogleFont } from 'react-typography';
+
+//Typography JS Things
+import Typography from 'typography'
+import moragaTheme from 'typography-theme-moraga'
+
+// import './layout.css'
+
+import './layout_new.css'
 
 import Header from './header'
-import './layout.css'
+
+//Changing text colours
+moragaTheme.overrideThemeStyles = (options) => ({
+  'h1,h2,h3': {
+    Color: 'BlanchedAlmond',
+  },
+  'p' : {
+    Color: 'BlanchedAlmond',
+  }
+})
+
+
+const typography = new Typography(moragaTheme)
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -18,6 +39,8 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <>
+        <TypographyStyle typography={typography} />
+        <GoogleFont typography={typography} />
         <Header siteTitle={data.site.siteMetadata.title} />
         <div
           style={{
