@@ -112,3 +112,16 @@ Color Pallette: https://coolors.co/011627-fdfffc-2ec4b6-e71d36-ff9f1c
 #FF9F1C - Crayola
 
 These are given global variables by importing it within the global stylesheet.
+
+I didn't like that one, so for now i'm going to stick to:
+
+STORMY #494E6B
+CLOUD #98878F
+SUNSET #985E6D
+EVENING #192231
+
+Typography
+
+Going to for theme-moraga
+
+Removed the Layout component from around `index.js`, to remove the header and make the homepage 'special'

@@ -1,0 +1,19 @@
+:root {
+  --stormy: #494E6B;
+  --cloud: #98878F;
+  --sunset: #985E6D;
+  --evening: #192231;
+}
+
+html {
+  height: 100%;
+  background-color: var(--evening);
+}
+
+.titleSplash {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
