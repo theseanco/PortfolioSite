@@ -17,6 +17,9 @@ moragaTheme.overrideThemeStyles = (options) => ({
   'h1,h2,h3': {
     Color: 'BlanchedAlmond',
   },
+  'h3': {
+    fontSize: '2rem',
+  },
   'p' : {
     Color: 'BlanchedAlmond',
   }
@@ -38,7 +41,7 @@ const IndexPage = ({
 }) => (
   <div>
   {
-    console.log(homepageTitle)
+    console.log(categories)
   }
 
   <TypographyStyle typography={typography} />
@@ -50,25 +53,37 @@ const IndexPage = ({
       <h1 style={{fontSize: '4rem', fontWeight: 500}}>{homepageTitle}</h1>
       <h2>{homepageSubtitle}</h2>
     </div>
-    <div className="categories">
+    <div className="flex-container">
       {
         categories.map((data) => {
           return (
-            <div key={data.id} className={`data-${data.slug}`}>
-              <p>
-                <Link to={data.slug}>{data.categoryName}</Link>
-              </p>
+            <div
+              className="categoryContainer"
+              key={data.id}
+              style={{backgroundImage: `url(http:${data.categoryPicture.file.url})`}}
+            >
+            <Link
+              to={data.slug}
+              style={{
+                height: `100%`,
+                width: `100%`,
+                textDecoration: `none`
+              }}>
+            <div className="fade-overlay">
+              <h3> {data.categoryName} </h3>
+            </div>
+            </Link>
             </div>
           )
         })
       }
-      <p key={authorPage.id} className="about">
+      <div className="categoryContainer">
+      <h3 key={authorPage.id} className="about">
         <Link to={authorPage.slug}>
           About Me
         </Link>
-      </p>
-    </div>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+      </h3>
+      </div>
     </div>
     </div>
 )
@@ -82,6 +97,11 @@ export const query = graphql`
       categoryName
       id
       slug
+      categoryPicture {
+        file {
+          url
+        }
+      }
     }
     authorPage {
       slug

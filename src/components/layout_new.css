@@ -7,6 +7,7 @@
 
 html {
   height: 100%;
+  width: 100%;
   background-color: var(--evening);
 }
 
@@ -20,12 +21,42 @@ html {
   background: linear-gradient(180deg, rgba(73,78,107,1) 0%, rgba(25,34,49,1) 100%);
 }
 
-.categories {
+.flex-container {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content:space-around;
   align-items: center
+}
+
+.categoryContainer {
+  height: 100%;
+  width: 80%;
+  margin: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-size: cover
+}
+
+.fade-overlay {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fade-overlay:hover {
+  opacity: 0.9;
+  transition: .5s ease;
+  background-color: #985E6D
+}
+
+.imageContainer:hover .text {
+  opacity: 1;
+  transition: 1.5s ease;
 }
 
 .data-programming-and-art {
