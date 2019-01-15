@@ -25,9 +25,13 @@ moragaTheme.overrideThemeStyles = (options) => ({
 const typography = new Typography(moragaTheme)
 
 const IndexPage = ({ data }) => (
-
   <div>
+  {
+    console.log(data)
+  }
+
   <TypographyStyle typography={typography} />
+
   <GoogleFont typography={typography} />
   {
     console.log(data)
@@ -37,18 +41,24 @@ const IndexPage = ({ data }) => (
       <h1 style={{fontSize: '4rem', fontWeight: 500}}>{data.contentfulHomepage.homepageTitle}</h1>
       <h2>{data.contentfulHomepage.homepageSubtitle}</h2>
     </div>
-    {
-      data.contentfulHomepage.categories.map((data) => {
-        return (
-          <p key={data.id}><Link to={data.slug}>{data.categoryName}</Link></p>
-        )
-      })
-    }
-    <p key={data.contentfulHomepage.authorPage.id}>
-      <Link to={data.contentfulHomepage.authorPage.slug}>
-        About Me
-      </Link>
-    </p>
+    <div className="categories">
+      {
+        data.contentfulHomepage.categories.map((data) => {
+          return (
+            <div key={data.id} className={`data-${data.slug}`}>
+              <p>
+                <Link to={data.slug}>{data.categoryName}</Link>
+              </p>
+            </div>
+          )
+        })
+      }
+      <p key={data.contentfulHomepage.authorPage.id} className="about">
+        <Link to={data.contentfulHomepage.authorPage.slug}>
+          About Me
+        </Link>
+      </p>
+    </div>
     <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
     </div>
     </div>

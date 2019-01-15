@@ -16,4 +16,23 @@ html {
   flex-direction: column;
   justify-content: center;
   height: 100vh;
+  background: rgb(73,78,107);
+  background: linear-gradient(180deg, rgba(73,78,107,1) 0%, rgba(25,34,49,1) 100%);
+}
+
+.categories {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-around;
+  align-items: center
+}
+
+.data-programming-and-art {
+}
+
+.data-web {
+}
+
+.about {
 }
