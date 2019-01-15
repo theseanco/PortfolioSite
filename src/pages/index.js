@@ -24,26 +24,35 @@ moragaTheme.overrideThemeStyles = (options) => ({
 
 const typography = new Typography(moragaTheme)
 
-const IndexPage = ({ data }) => (
+//DESTRUCTURE THIS.
+const IndexPage = ({
+  //destructure data on input
+  data: {
+    contentfulHomepage: {
+      homepageTitle,
+      homepageSubtitle,
+      categories,
+      authorPage
+    }
+  }
+}) => (
   <div>
   {
-    console.log(data)
+    console.log(homepageTitle)
   }
 
   <TypographyStyle typography={typography} />
 
   <GoogleFont typography={typography} />
-  {
-    console.log(data)
-  }
+
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
     <div className="titleSplash">
-      <h1 style={{fontSize: '4rem', fontWeight: 500}}>{data.contentfulHomepage.homepageTitle}</h1>
-      <h2>{data.contentfulHomepage.homepageSubtitle}</h2>
+      <h1 style={{fontSize: '4rem', fontWeight: 500}}>{homepageTitle}</h1>
+      <h2>{homepageSubtitle}</h2>
     </div>
     <div className="categories">
       {
-        data.contentfulHomepage.categories.map((data) => {
+        categories.map((data) => {
           return (
             <div key={data.id} className={`data-${data.slug}`}>
               <p>
@@ -53,8 +62,8 @@ const IndexPage = ({ data }) => (
           )
         })
       }
-      <p key={data.contentfulHomepage.authorPage.id} className="about">
-        <Link to={data.contentfulHomepage.authorPage.slug}>
+      <p key={authorPage.id} className="about">
+        <Link to={authorPage.slug}>
           About Me
         </Link>
       </p>
