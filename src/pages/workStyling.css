@@ -1,0 +1,19 @@
+.work-description {
+  color: BlanchedAlmond;
+  font-weight: 200
+}
+
+.work-grid-container {
+  display: grid;
+  grid-gap: 2em;
+  grid-template-columns: 2fr 1.75fr;
+  grid-template-areas: "workText workImage"
+}
+
+.work-text-area {
+  grid-area: workText
+}
+
+.work-image-area {
+  grid-area: workImage
+}
