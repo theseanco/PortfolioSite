@@ -1,9 +1,10 @@
+// OPTIMIZE: GET RID OF UNNECESSARILY QUERIED TECHNOLOGY VALUES
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 
 import Layout from '../components/layout';
-import IconMatcher from '../components/helper-components/IconMatcher'
+// import IconMatcher from '../components/helper-components/IconMatcher'
 import SEO from '../components/seo';
 
 import './workStyling.css'
@@ -18,7 +19,8 @@ const WorkPage = ({data: {
     featuredImage,
     link,
     technologies,
-    title
+    title,
+    technologyIcons
   }
 }}) => (
   <Layout>
@@ -31,15 +33,18 @@ const WorkPage = ({data: {
             {description.description}
           </p>
         </div>
-        <ul>
+        <ul className="iconList">
           {
-            technologies.map((data, index) => {
+            technologyIcons.map(data => {
               return (
-                <li key={index}>{data}</li>
+                <li>
+                  <div className="icon">
+                    <img src={`http://${data.file.url}`} />
+                  </div>
+                </li>
               )
             })
           }
-          <IconMatcher items={technologies}/>
         </ul>
         <p>
           <a href={link} target="_blank">Visit Site</a>
@@ -78,6 +83,14 @@ export const query = graphql`
         }
         technologies
         link
+        technologyIcons {
+          id
+          file {
+            url
+            fileName
+            contentType
+          }
+        }
       }
       getParentCategory: contentfulCategory(slug: {eq: $parentSlug}){
         id

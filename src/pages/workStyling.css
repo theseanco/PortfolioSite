@@ -17,3 +17,17 @@
 .work-image-area {
   grid-area: workImage
 }
+
+.iconList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+} li:not(:last-child) {
+  margin-right: 24px;
+}
+
+.icon {
+  height: 50px;
+  width: 50px;
+}
