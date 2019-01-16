@@ -1,0 +1,33 @@
+.work-description {
+  color: BlanchedAlmond;
+  font-weight: 200
+}
+
+.work-grid-container {
+  display: grid;
+  grid-gap: 2em;
+  grid-template-columns: 2fr 1.75fr;
+  grid-template-areas: "workText workImage"
+}
+
+.work-text-area {
+  grid-area: workText
+}
+
+.work-image-area {
+  grid-area: workImage
+}
+
+.iconList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+} li:not(:last-child) {
+  margin-right: 24px;
+}
+
+.icon {
+  height: 50px;
+  width: 50px;
+}
