@@ -3,6 +3,7 @@
   --cloud: #98878F;
   --sunset: #985E6D;
   --evening: #192231;
+  --fadein: .3s
 }
 
 html {
@@ -31,13 +32,14 @@ html {
 
 .categoryContainer {
   height: 100%;
-  width: 80%;
-  margin: 2rem;
+  width: 90%;
+  margin: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   background-repeat: no-repeat;
-  background-size: cover
+  background-size: cover;
+  background-position: center;
 }
 
 .fade-overlay {
@@ -46,17 +48,14 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: var(--fadein) ease-out;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .fade-overlay:hover {
   opacity: 0.9;
-  transition: .5s ease;
+  transition: var(--fadein) ease-in;
   background-color: #985E6D
-}
-
-.imageContainer:hover .text {
-  opacity: 1;
-  transition: 1.5s ease;
 }
 
 .data-programming-and-art {
