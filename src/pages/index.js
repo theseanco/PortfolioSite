@@ -1,5 +1,5 @@
 /*
-TODO: There is code repetition here, abstract this out into a component
+OPTIMIZE: : There is code repetition here, abstract this out into a component
 */
 
 import React from 'react'
@@ -76,7 +76,7 @@ const IndexPage = ({
                   width: `100%`,
                   textDecoration: `none`
                 }}>
-                <div className="fade-overlay">
+                <div className="fade-overlay-grid">
                   <div className="link">
                     <h3> {data.categoryName} </h3>
                   </div>
