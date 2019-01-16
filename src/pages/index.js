@@ -1,3 +1,7 @@
+/*
+TODO: There is code repetition here, abstract this out into a component
+*/
+
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 
@@ -16,9 +20,13 @@ import moragaTheme from 'typography-theme-moraga'
 moragaTheme.overrideThemeStyles = (options) => ({
   'h1,h2,h3': {
     Color: 'BlanchedAlmond',
+    textAlign: 'center'
+  },
+  'h2': {
+    textAlign: 'center'
   },
   'h3': {
-    fontSize: '2rem',
+    fontSize: '2rem'
   },
   'p' : {
     Color: 'BlanchedAlmond',
@@ -45,7 +53,6 @@ const IndexPage = ({
   }
 
   <TypographyStyle typography={typography} />
-
   <GoogleFont typography={typography} />
 
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
@@ -62,27 +69,45 @@ const IndexPage = ({
               key={data.id}
               style={{backgroundImage: `url(http:${data.categoryPicture.file.url})`}}
             >
-            <Link
-              to={data.slug}
-              style={{
-                height: `100%`,
-                width: `100%`,
-                textDecoration: `none`
-              }}>
-            <div className="fade-overlay">
-              <h3> {data.categoryName} </h3>
-            </div>
-            </Link>
+              <Link
+                to={data.slug}
+                style={{
+                  height: `100%`,
+                  width: `100%`,
+                  textDecoration: `none`
+                }}>
+                <div className="fade-overlay">
+                  <div className="link">
+                    <h3> {data.categoryName} </h3>
+                  </div>
+                </div>
+              </Link>
             </div>
           )
         })
       }
-      <div className="categoryContainer">
-      <h3 key={authorPage.id} className="about">
-        <Link to={authorPage.slug}>
-          About Me
-        </Link>
-      </h3>
+      <div
+        className="categoryContainer"
+        key={authorPage.id}
+        style={{backgroundImage:
+        `url(http:${authorPage.sectionCardPhoto.file.url})`}}
+      >
+        <Link
+          to={authorPage.slug}
+          style={{
+                  height: `100%`,
+                  width: `100%`,
+                  textDecoration: `none`
+                }}
+        >
+          <div className="fade-overlay">
+            <div className="link">
+              <h3 key={authorPage.id} className="about">
+                About
+              </h3>
+            </div>
+          </div>
+          </Link>
       </div>
     </div>
     </div>
@@ -105,6 +130,12 @@ export const query = graphql`
     }
     authorPage {
       slug
+      sectionCardPhoto {
+        id
+        file {
+          url
+        }
+      }
     }
   }
 }
