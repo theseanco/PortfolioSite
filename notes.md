@@ -125,3 +125,21 @@ Typography
 Going to for theme-moraga
 
 Removed the Layout component from around `index.js`, to remove the header and make the homepage 'special'
+
+#### GraphQL Query for getting icons
+
+{
+  allContentfulIcons {
+    edges {
+      node {
+        iconList {
+          id
+          title
+          file {
+            url
+          }
+        }
+      }
+    }
+  }
+}

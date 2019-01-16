@@ -3,6 +3,7 @@ import { Link, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 
 import Layout from '../components/layout';
+import IconMatcher from '../components/helper-components/IconMatcher'
 import SEO from '../components/seo';
 
 import './workStyling.css'
@@ -38,6 +39,7 @@ const WorkPage = ({data: {
               )
             })
           }
+          <IconMatcher items={technologies}/>
         </ul>
         <p>
           <a href={link} target="_blank">Visit Site</a>
