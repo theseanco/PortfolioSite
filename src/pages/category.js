@@ -31,6 +31,11 @@ const CategoryPage = ({
       works.map(work => {
         //available: work ID, Title, Slug, summary(.internal.content)
         return (
+          <div
+            className="workImage"
+            style={{backgroundImage: `url(http:${work.featuredImage.file.url})`}}
+            key={work.id}
+          >
           <Link
             to={`/${slug}/${work.slug}`}
             style={{
@@ -39,10 +44,14 @@ const CategoryPage = ({
             textDecoration: `none`
             }}
             >
-            <div className="categoryImage">
-            <Img fluid={work.featuredImage.fluid} />
+            <div className="fade-overlay">
+              <div className="link-grid">
+              <h3>{work.title}</h3>
+              <p>{work.summary.internal.content}</p>
+              </div>
             </div>
             </Link>
+            </div>
           )
       })
     }
@@ -63,6 +72,9 @@ query getCategoryInfo($pageSlug: String){
       title
       featuredImage {
         id
+        file {
+          url
+        }
         fluid {
           ...GatsbyContentfulFluid
         }

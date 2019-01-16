@@ -76,7 +76,7 @@ const IndexPage = ({
                   width: `100%`,
                   textDecoration: `none`
                 }}>
-                <div className="fade-overlay-grid">
+                <div className="fade-overlay">
                   <div className="link">
                     <h3> {data.categoryName} </h3>
                   </div>
