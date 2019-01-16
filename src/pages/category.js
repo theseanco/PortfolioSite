@@ -5,27 +5,57 @@ import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
-const CategoryPage = ({data}) => (
+import './categoryStyling.css'
+
+const CategoryPage = ({
+  data: {
+    contentfulCategory: {
+      categoryName,
+      id,
+      slug,
+      works
+    }
+  }
+}) => (
   <Layout>
-    <SEO title="Page two" />
-    <h1>{data.contentfulCategory.categoryName}</h1>
-    <ul>
+  {
+    console.log(works)
+  }
+    <SEO title={categoryName} />
+    <div className="title">
+      <h1>{categoryName}</h1>
+    </div>
+    <div className="grid-container">
     {
       //create a list of works
-      data.contentfulCategory.works.map(work => {
+      works.map(work => {
+        //available: work ID, Title, Slug, summary(.internal.content)
         return (
-          <li key={work.id}>
-          <Link to={`/${data.contentfulCategory.slug}/${work.slug}`}><h3>{work.title}</h3></Link>
-
-          {
-            work.summary.internal.content
-          }
-          <Img fluid={work.featuredImage.fluid} />
-          </li>
+          <div
+            className="workImage"
+            style={{backgroundImage: `url(http:${work.featuredImage.file.url})`}}
+            key={work.id}
+          >
+          <Link
+            to={`/${slug}/${work.slug}`}
+            style={{
+            height: `100%`,
+            width: `100%`,
+            textDecoration: `none`
+            }}
+            >
+            <div className="fade-overlay">
+              <div className="link-grid">
+              <h3>{work.title}</h3>
+              <p>{work.summary.internal.content}</p>
+              </div>
+            </div>
+            </Link>
+            </div>
           )
       })
     }
-    </ul>
+    </div>
     <Link to="/">Go back to the homepage</Link>
   </Layout>
 )
@@ -42,6 +72,9 @@ query getCategoryInfo($pageSlug: String){
       title
       featuredImage {
         id
+        file {
+          url
+        }
         fluid {
           ...GatsbyContentfulFluid
         }

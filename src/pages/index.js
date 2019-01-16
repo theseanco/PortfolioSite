@@ -1,5 +1,5 @@
 /*
-TODO: There is code repetition here, abstract this out into a component
+OPTIMIZE: : There is code repetition here, abstract this out into a component
 */
 
 import React from 'react'
