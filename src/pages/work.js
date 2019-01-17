@@ -61,7 +61,11 @@ const WorkPage = ({data: {
             </Link>
           </li>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/"
+              state={{
+                noAnimation: true
+              }}
+            >Home</Link>
           </li>
         </ul>
       </div>

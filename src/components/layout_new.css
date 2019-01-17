@@ -3,7 +3,8 @@
   --cloud: #98878F;
   --sunset: #985E6D;
   --evening: #192231;
-  --fadein: .3s
+  --fadein: .3s;
+  --reveal-animation: 3s
 }
 
 html {
@@ -12,7 +13,7 @@ html {
   background-color: var(--evening);
 }
 
-.titleSplash {
+.title-splash {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -22,15 +23,54 @@ html {
   background: linear-gradient(180deg, rgba(73,78,107,1) 0%, rgba(25,34,49,1) 100%);
 }
 
+.title-splash-bg {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  z-index: 3
+}
+
+/* Text opacity animation code */
+.title-splash-bg {
+  animation-duration: var(--reveal-animation);
+  animation-name: opacityFadeout;
+  animation-fill-mode: forwards;
+  animation-delay: 1s;
+}
+@keyframes opacityFadeout {
+  0% {
+    opacity: 1;
+    z-index: 3
+  }
+
+  99% {
+    opacity: 0;
+    z-index: 3;
+  }
+
+  100% {
+    opacity: 0;
+    z-index: -99
+  }
+}
+
+.doNotDisplay {
+  display: none
+}
+
 .flex-container {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content:space-around;
-  align-items: center
+  align-items: center;
 }
 
-.categoryContainer {
+.category-container {
   height: 100%;
   width: 90%;
   margin: 1rem;
@@ -40,6 +80,24 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  }
+/* Text opacity animation code */
+.animate-blur {
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  animation-duration: var(--reveal-animation);
+  animation-name: blurFadeout;
+  animation-fill-mode: forwards;
+  animation-delay: 2s;
+}
+@keyframes blurFadeout {
+  0% {
+    filter: blur(5px);
+  }
+
+  100% {
+    filter: blur(0px);
+  }
 }
 
 .fade-overlay {
@@ -84,10 +142,10 @@ html {
 
 .page-footer {
   /* margin-top: 1rem; */
-  background-color: rgba(0,0,0,0.3);
-  color: BlanchedAlmond;
+  background: linear-gradient(180deg, rgba(152, 135, 143, .6) 0%,rgba(152, 135, 143, .9) 100%);
   display: flex;
   padding: 0.5rem;
+  height: 3rem;
   align-items: center;
   justify-content: space-between;
 }

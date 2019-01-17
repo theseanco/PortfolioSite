@@ -2,7 +2,7 @@
 OPTIMIZE: : There is code repetition here, abstract this out into a component
 */
 
-import React, {Component} from 'react'
+import React from 'react'
 import { Link, graphql } from 'gatsby'
 
 import Layout from '../components/layout'
@@ -36,63 +36,38 @@ moragaTheme.overrideThemeStyles = (options) => ({
 const typography = new Typography(moragaTheme)
 
 //DESTRUCTURE THIS.
-class IndexPage extends React.Component {
-
-  constructor(props) {
-    super(props)
-  }
-
-  componentDidMount() {
-
-  }
-
-render() {
-
-  const {
-      contentfulHomepage: {
-        homepageTitle,
-        homepageSubtitle,
-        categories,
-        authorPage
-      }
-    } = this.props.data
-
-  const { state } = this.props.location;
-
-  let animateText, animateBlur;
-  /*
-    If state is null, this page has been loaded from a URL, so play the animation. If it is NOT null, it _CURRENTLY_ should not animate as it has been navigated to from within the site.
-  */
-  if (state === null) {
-    animateText = "title-splash-bg animate-title"
-    animateBlur = "category-container animate-blur"
-  } else {
-    animateText = "doNotDisplay"
-    animateBlur = "category-container"
-  }
-
-  console.log(state, animateText, animateBlur)
-  return(
+const IndexPage = ({
+  //destructure data on input
+  data: {
+    contentfulHomepage: {
+      homepageTitle,
+      homepageSubtitle,
+      categories,
+      authorPage
+    }
+  },
+}) => (
   <div>
+  {
+    console.log(props)
+  }
   <TypographyStyle typography={typography} />
   <GoogleFont typography={typography} />
 
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-
-    <div className={animateText}>
+    <div className="title-splash-bg">
       <h1 style={{fontSize: '4rem', fontWeight: 500}}>{homepageTitle}</h1>
       <h2>{homepageSubtitle}</h2>
-      {/*
-        this.props.location.state.animated === null ? <div> No animation </div> : <div> Animation </div>
-      */}
+      {
+        props.animate ? <div> thing </div> : <div> noThing</div>
+      }
     </div>
-
     <div className="flex-container">
       {
         categories.map((data) => {
           return (
             <div
-              className={animateBlur}
+              className="categoryContainer"
               key={data.id}
               style={{backgroundImage: `url(http:${data.categoryPicture.file.url})`}}
             >
@@ -113,9 +88,8 @@ render() {
           )
         })
       }
-
       <div
-        className={animateBlur}
+        className="categoryContainer"
         key={authorPage.id}
         style={{backgroundImage:
         `url(http:${authorPage.sectionCardPhoto.file.url})`}}
@@ -139,9 +113,7 @@ render() {
       </div>
     </div>
     </div>
-  )
-}
-}
+)
 
 export const query = graphql`
 {
