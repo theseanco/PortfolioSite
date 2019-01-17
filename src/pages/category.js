@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import Img from 'gatsby-image'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
@@ -18,45 +17,48 @@ const CategoryPage = ({
   }
 }) => (
   <Layout>
-  {
-    console.log(works)
-  }
     <SEO title={categoryName} />
     <div className="title">
       <h1>{categoryName}</h1>
     </div>
     <div className="grid-container">
-    {
-      //create a list of works
-      works.map(work => {
-        //available: work ID, Title, Slug, summary(.internal.content)
-        return (
-          <div
-            className="workImage"
-            style={{backgroundImage: `url(http:${work.featuredImage.file.url})`}}
-            key={work.id}
-          >
-          <Link
-            to={`/${slug}/${work.slug}`}
-            style={{
-            height: `100%`,
-            width: `100%`,
-            textDecoration: `none`
-            }}
+      {
+        //create a list of works
+        works.map(work => {
+          //available: work ID, Title, Slug, summary(.internal.content)
+          return (
+            <div
+              className="workImage"
+              style={{backgroundImage: `url(http:${work.featuredImage.file.url})`}}
+              key={work.id}
             >
-            <div className="fade-overlay">
-              <div className="link-grid">
-              <h3>{work.title}</h3>
-              <p>{work.summary.internal.content}</p>
+            <Link
+              to={`/${slug}/${work.slug}`}
+              style={{
+              height: `100%`,
+              width: `100%`,
+              textDecoration: `none`
+              }}
+              >
+              <div className="fade-overlay-grid">
+                <div className="link-grid">
+                <h3>{work.title}</h3>
+                <p>{work.summary.internal.content}</p>
+                </div>
               </div>
-            </div>
-            </Link>
-            </div>
-          )
-      })
-    }
+              </Link>
+              </div>
+            )
+        })
+      }
     </div>
-    <Link to="/">Go back to the homepage</Link>
+    <div className="category-home">
+      <Link to="/"
+        state={{
+          noAnimation: true
+        }}
+      >Home</Link>
+    </div>
   </Layout>
 )
 

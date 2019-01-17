@@ -53,40 +53,40 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <>
-      {
-        console.log(data)
-      }
         <TypographyStyle typography={typography} />
         <GoogleFont typography={typography} />
-        <Header siteTitle={data.homepageInfo.homepageTitle} />
-        <div
-          style={{
-            margin: `0 auto`,
-            padding: `0px 4rem`,
-            paddingTop: 0,
-          }}
-        >
-          {children}
+        <div className="master-container">
+          <Header siteTitle={data.homepageInfo.homepageTitle} />
+          <div
+            className="body-container"
+            style={{
+              margin: `0 auto`,
+              padding: `0px 4rem`,
+              paddingTop: 0,
+            }}
+          >
+            {children}
+            </div>
+            <footer className="page-footer">
+            <div className="footer-info">
+              Sean Cotterill, 2019
+            </div>
+            <ul className="footer-icons">
+              <span style={{marginRight: `10px`}}>Created using:</span>
+              {
+                data.builtIcons.technologyIcons.map(data => {
+                  return(
+                    <li key={data.id} className="footer-icon">
+                      <div className="footer-icon" key={data.id}>
+                        <img src={`http://${data.file.url}`} alt={data.title} />
+                      </div>
+                    </li>
+                  )
+                })
+              }
+              </ul>
+            </footer>
           </div>
-          <footer className="page-footer">
-          <div className="footerInfo">
-            Sean Cotterill, 2019
-          </div>
-          <ul className="footer-icons">
-            <span style={{marginRight: `10px`}}>Site built with:</span>
-            {
-              data.builtIcons.technologyIcons.map(data => {
-                return(
-                  <li className="footer-icon">
-                    <div className="footer-icon" key={data.id}>
-                      <img src={`http://${data.file.url}`} alt={data.title} />
-                    </div>
-                  </li>
-                )
-              })
-            }
-            </ul>
-          </footer>
       </>
     )}
   />

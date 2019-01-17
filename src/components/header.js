@@ -8,26 +8,23 @@ const Header = ({ siteTitle }) => (
   <div
     className="topBar"
   >
-    <div
-      className="topBarStyling"
-    >
-      <h1>
-        <Link
+          <h1>
+        <Link className="header-home-link"
           to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
+          state={{
+            noAnimation: true
           }}
         >
           {siteTitle}
         </Link>
+        </h1>
 
+        <span className="header-about-link">
         <Link
           to="/about"
           >About</Link>
+        </span>
 
-      </h1>
-    </div>
   </div>
 )
 

@@ -143,3 +143,22 @@ Removed the Layout component from around `index.js`, to remove the header and ma
     }
   }
 }
+
+A hack to get intro animation to work:
+
+@keyframes opacityFadeout {
+  0% {
+    opacity: 1;
+    z-index: 3
+  }
+
+  99% {
+    opacity: 0;
+    z-index: 3;
+  }
+
+  100% {
+    opacity: 0;
+    z-index: -99
+  }
+}
