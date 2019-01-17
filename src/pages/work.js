@@ -50,10 +50,11 @@ const WorkPage = ({data: {
         </ul>
         <ul className="linkList">
           {
-           link ? <li><a href={link} target="_blank">Visit Site</a></li> : null
+           link ? <li><a href={link} target="_blank" rel="noopener noreferrer" >Visit Site</a></li> : null
+
           }
           {
-           githubLink ? <li><a href={githubLink}>Visit on GitHub</a></li> : null
+           githubLink ? <li><a href={githubLink}  target="_blank" rel="noopener noreferrer">Visit on GitHub</a></li> : null
           }
           <li>
             <Link to={slug}>

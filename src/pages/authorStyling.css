@@ -6,8 +6,18 @@
 .author-grid-container {
   display: grid;
   grid-gap: 2em;
-  grid-template-columns: 2fr 1.75fr;
-  grid-template-areas: "authorText authorImage"
+  grid-template-areas:
+  "authorImage"
+  "authorText";
+}
+
+@media only screen and (min-width: 768px) {
+  .author-grid-container{
+    display: grid;
+    grid-gap: 2em;
+    grid-template-columns: 2fr 1.75fr;
+    grid-template-areas: "authorText authorImage"
+  }
 }
 
 .author-text-area {

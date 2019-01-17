@@ -53,9 +53,6 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <>
-      {
-        console.log(data)
-      }
         <TypographyStyle typography={typography} />
         <GoogleFont typography={typography} />
         <div className="master-container">
@@ -79,7 +76,7 @@ const Layout = ({ children }) => (
               {
                 data.builtIcons.technologyIcons.map(data => {
                   return(
-                    <li className="footer-icon">
+                    <li key={data.id} className="footer-icon">
                       <div className="footer-icon" key={data.id}>
                         <img src={`http://${data.file.url}`} alt={data.title} />
                       </div>

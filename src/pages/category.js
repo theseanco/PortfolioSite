@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import Img from 'gatsby-image'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
@@ -18,9 +17,6 @@ const CategoryPage = ({
   }
 }) => (
   <Layout>
-  {
-    console.log(works)
-  }
     <SEO title={categoryName} />
     <div className="title">
       <h1>{categoryName}</h1>

@@ -9,8 +9,7 @@ import SEO from '../components/seo'
 
 const SecondPage = ({data}) => (
   <Layout>
-  {console.log(data)}
-    <SEO title="Page two" />
+    <SEO title="About" />
     <div className="author-grid-container">
       <div className="author-text-area">
         <h1>{data.contentfulAuthor.name}</h1>

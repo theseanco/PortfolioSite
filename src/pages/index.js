@@ -2,11 +2,9 @@
 OPTIMIZE: : There is code repetition here, abstract this out into a component
 */
 
-import React, {Component} from 'react'
+import React from 'react'
 import { Link, graphql } from 'gatsby'
 
-import Layout from '../components/layout'
-import Image from '../components/image'
 import SEO from '../components/seo'
 
 //import more typography things. Necessary as I am loading from outside of the layout
@@ -38,9 +36,7 @@ const typography = new Typography(moragaTheme)
 //DESTRUCTURE THIS.
 class IndexPage extends React.Component {
 
-  constructor(props) {
-    super(props)
-  }
+  
 
   componentDidMount() {
 
@@ -71,7 +67,6 @@ render() {
     animateBlur = "category-container"
   }
 
-  console.log(state, animateText, animateBlur)
   return(
   <div>
   <TypographyStyle typography={typography} />
