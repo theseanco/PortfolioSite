@@ -34,7 +34,8 @@ const WorkPage = ({data: {
           </p>
         </div>
         <ul className="iconList">
-          {
+        {/* Conditional rendering of icons */}
+          {technologyIcons ? (
             technologyIcons.map(data => {
               return (
                 <li>
@@ -44,7 +45,7 @@ const WorkPage = ({data: {
                 </li>
               )
             })
-          }
+            ) : (null)}
         </ul>
         <p>
           <a href={link} target="_blank">Visit Site</a>
