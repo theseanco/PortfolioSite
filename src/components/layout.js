@@ -1,3 +1,9 @@
+/*
+
+The query here gets information about the title of the site, as well as icons to put in the footer that tell information about how the site was built.
+
+*/
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
@@ -29,33 +35,58 @@ const typography = new Typography(moragaTheme)
 const Layout = ({ children }) => (
   <StaticQuery
     query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
+      {
+        homepageInfo: contentfulHomepage(slug: {eq: "home"}) {
+          id
+          homepageTitle
+        }
+        builtIcons: contentfulWork(slug: {eq: "sean-cotterill-portfolio"}) {
+          technologyIcons {
+            id
             title
+            file {
+              url
+            }
           }
         }
       }
     `}
     render={data => (
       <>
+      {
+        console.log(data)
+      }
         <TypographyStyle typography={typography} />
         <GoogleFont typography={typography} />
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Header siteTitle={data.homepageInfo.homepageTitle} />
         <div
           style={{
             margin: `0 auto`,
-            padding: `0px 1.45rem 1.45rem`,
+            padding: `0px 4rem`,
             paddingTop: 0,
           }}
         >
           {children}
-          <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
+          </div>
+          <footer className="page-footer">
+          <div className="footerInfo">
+            Sean Cotterill, 2019
+          </div>
+          <ul className="footer-icons">
+            <span style={{marginRight: `10px`}}>Site built with:</span>
+            {
+              data.builtIcons.technologyIcons.map(data => {
+                return(
+                  <li className="footer-icon">
+                    <div className="footer-icon" key={data.id}>
+                      <img src={`http://${data.file.url}`} alt={data.title} />
+                    </div>
+                  </li>
+                )
+              })
+            }
+            </ul>
           </footer>
-        </div>
       </>
     )}
   />
