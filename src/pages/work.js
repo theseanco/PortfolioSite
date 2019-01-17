@@ -30,9 +30,9 @@ const WorkPage = ({data: {
       <div className="work-text-area">
         <h1>{title}</h1>
         <div className="work-description">
-          <p>
-            {description.description}
-          </p>
+          <p className="work-text" dangerouslySetInnerHTML={{
+            __html: description.childMarkdownRemark.html
+          }}/>
         </div>
         <ul className="iconList">
         {/* Conditional rendering of icons */}
@@ -48,20 +48,24 @@ const WorkPage = ({data: {
             })
             ) : (null)}
         </ul>
-        <p>
-          <a href={link} target="_blank">Visit Site</a>
-        </p>
-        <p>
-         {
-           githubLink ? <a href={githubLink} target="_blank">Visit on GitHub</a> : null
-         }
-        </p>
-        <p>
-          <Link to={slug}>
-            Back to {categoryName}
-          </Link>
-        </p>
-        <Link to="/">Home</Link>
+        <ul className="linkList">
+          <li>
+            {
+             link ? <li><a href={link} target="_blank">Visit Site</a></li> : null
+            }
+          </li>
+            {
+             githubLink ? <li><a href={githubLink}>Visit on GitHub</a></li> : null
+            }
+          <li>
+            <Link to={slug}>
+              Back to {categoryName}
+            </Link>
+          </li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+        </ul>
       </div>
       <div className="work-image-area">
         <Img fluid={featuredImage.fluid} />
@@ -86,7 +90,9 @@ export const query = graphql`
         }
         description {
           id
-          description
+          childMarkdownRemark {
+            html
+          }
         }
         technologies
         link

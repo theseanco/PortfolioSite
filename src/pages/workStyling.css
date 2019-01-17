@@ -25,6 +25,12 @@
   display: flex;
 }
 
+.linkList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 .iconList li:not(:last-child) {
   margin-right: 24px;
 }
