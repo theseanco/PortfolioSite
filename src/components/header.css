@@ -1,24 +1,36 @@
 .topBar {
+  color: White;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1em 2em;
-  background: linear-gradient(180deg, rgba(152, 94, 109, 0.9) 0%, rgba(152, 94, 109, 0.6) 100%);
+  border-bottom: 2px solid var(--stormy);
   margin-bottom: 2rem;
 }
 
 .topBar h1 {
+  color: White;
   margin: 0;
   line-height: normal;
 }
 
 .header-home-link {
-  color: var(--evening);
-  font-weight: 500;
-  letter-spacing: 5px;
+  color: inherit;
+  font-weight: 100;
+  letter-spacing: -4px;
   text-decoration: none;
 }
 
+.header-home-link:hover {
+  color: inherit;
+}
+
 .header-about-link {
+  color: inherit;
+  text-decoration: none;
   font-size: 1.5rem;
+}
+
+.header-about-link:hover {
+  color: inherit;
 }

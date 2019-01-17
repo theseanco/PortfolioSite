@@ -19,11 +19,10 @@ const Header = ({ siteTitle }) => (
         </Link>
         </h1>
 
-        <span className="header-about-link">
         <Link
+        className="header-about-link"
           to="/about"
           >About</Link>
-        </span>
 
   </div>
 )
