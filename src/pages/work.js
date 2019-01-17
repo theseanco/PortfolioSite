@@ -18,6 +18,7 @@ const WorkPage = ({data: {
     description,
     featuredImage,
     link,
+    githubLink,
     technologies,
     title,
     technologyIcons
@@ -51,11 +52,16 @@ const WorkPage = ({data: {
           <a href={link} target="_blank">Visit Site</a>
         </p>
         <p>
+         {
+           githubLink ? <a href={githubLink} target="_blank">Visit on GitHub</a> : null
+         }
+        </p>
+        <p>
           <Link to={slug}>
             Back to {categoryName}
           </Link>
         </p>
-        <Link to="/">Go back to the homepage</Link>
+        <Link to="/">Home</Link>
       </div>
       <div className="work-image-area">
         <Img fluid={featuredImage.fluid} />
@@ -84,8 +90,10 @@ export const query = graphql`
         }
         technologies
         link
+        githubLink
         technologyIcons {
           id
+          title
           file {
             url
             fileName
