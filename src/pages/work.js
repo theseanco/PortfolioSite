@@ -39,9 +39,9 @@ const WorkPage = ({data: {
           {technologyIcons ? (
             technologyIcons.map(data => {
               return (
-                <li>
+                <li key={data.id}>
                   <div className="icon">
-                    <img src={`http://${data.file.url}`} />
+                    <img src={`http://${data.file.url}`} alt={data.title} />
                   </div>
                 </li>
               )
@@ -49,14 +49,12 @@ const WorkPage = ({data: {
             ) : (null)}
         </ul>
         <ul className="linkList">
-          <li>
-            {
-             link ? <li><a href={link} target="_blank">Visit Site</a></li> : null
-            }
-          </li>
-            {
-             githubLink ? <li><a href={githubLink}>Visit on GitHub</a></li> : null
-            }
+          {
+           link ? <li><a href={link} target="_blank">Visit Site</a></li> : null
+          }
+          {
+           githubLink ? <li><a href={githubLink}>Visit on GitHub</a></li> : null
+          }
           <li>
             <Link to={slug}>
               Back to {categoryName}

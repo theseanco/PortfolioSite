@@ -68,7 +68,8 @@ html {
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: row
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .footer-icons li:not(:last-child) {
@@ -77,24 +78,22 @@ html {
 
 .footer-icon {
   height: 25px;
-  width: 25px
+  width: 25px;
+  margin-bottom: 0px
 }
 
 .page-footer {
   /* margin-top: 1rem; */
+  background-color: rgba(0,0,0,0.3);
   color: BlanchedAlmond;
-  margin: auto 2rem;
-  margin-top: 1rem;
   display: flex;
+  padding: 0.5rem;
   align-items: center;
   justify-content: space-between;
 }
 
-.data-programming-and-art {
-}
-
-.data-web {
-}
-
-.about {
+@media only screen and (max-width:768px) {
+  .footer-info {
+    display: none
+  }
 }

@@ -69,11 +69,11 @@ const Layout = ({ children }) => (
           {children}
           </div>
           <footer className="page-footer">
-          <div className="footerInfo">
+          <div className="footer-info">
             Sean Cotterill, 2019
           </div>
           <ul className="footer-icons">
-            <span style={{marginRight: `10px`}}>Site built with:</span>
+            <span style={{marginRight: `10px`}}>Created using:</span>
             {
               data.builtIcons.technologyIcons.map(data => {
                 return(
