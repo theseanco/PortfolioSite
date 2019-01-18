@@ -29,6 +29,15 @@ const WorkPage = ({data: {
     <div className="work-grid-container">
       <div className="work-text-area">
         <h1>{title}</h1>
+        <div className="linksDiv">
+        {
+           link ? <a href={link} target="_blank" rel="noopener noreferrer" >Visit Site</a> : null
+
+          }
+          {
+           githubLink ? <a href={githubLink}  target="_blank" rel="noopener noreferrer">GitHub Repo</a> : null
+          }
+        </div>
         <div className="work-description">
           <p className="work-text" dangerouslySetInnerHTML={{
             __html: description.childMarkdownRemark.html
@@ -49,13 +58,7 @@ const WorkPage = ({data: {
             ) : (null)}
         </ul>
         <ul className="linkList">
-          {
-           link ? <li><a href={link} target="_blank" rel="noopener noreferrer" >Visit Site</a></li> : null
 
-          }
-          {
-           githubLink ? <li><a href={githubLink}  target="_blank" rel="noopener noreferrer">Visit on GitHub</a></li> : null
-          }
           <li>
             <Link to={slug}>
               Back to {categoryName}

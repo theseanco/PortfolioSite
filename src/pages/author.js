@@ -13,23 +13,11 @@ const SecondPage = ({data}) => (
     <div className="author-grid-container">
       <div className="author-text-area">
         <h1>{data.contentfulAuthor.name}</h1>
-        <h3>{data.contentfulAuthor.subtitle}</h3>
         <div className="author-description">
-          <p>{data.contentfulAuthor.bodyText.bodyText}</p>
+          <p dangerouslySetInnerHTML={{
+            __html: data.contentfulAuthor.bodyText.childMarkdownRemark.html
+          }}/>
         </div>
-        <ul>
-          {
-            data.contentfulAuthor.linkList.links.map(data => {
-              return (
-                <li key={data.LinkType} >
-                  <a href={data.Link} className="header-link">
-                    {data.LinkType}
-                  </a>
-                </li>
-              )
-            })
-          }
-        </ul>
         <Link to="/">Home</Link>
       </div>
       <div className="author-image-area">
@@ -45,7 +33,6 @@ export const query = graphql`
     contentfulAuthor {
       id
       name
-      subtitle
       linkList{
         id
         links {
@@ -62,7 +49,9 @@ export const query = graphql`
       }
       bodyText {
         id
-        bodyText
+        childMarkdownRemark {
+          html
+        }
       }
     }
   }
