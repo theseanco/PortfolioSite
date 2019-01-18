@@ -1,24 +1,81 @@
+/* responsive top bar placing elements at ends */
 .topBar {
+  color: White;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 1em 2em;
-  background: linear-gradient(180deg, rgba(152, 94, 109, 0.9) 0%, rgba(152, 94, 109, 0.6) 100%);
+  border-bottom: 2px solid var(--stormy);
   margin-bottom: 2rem;
+}
+@media only screen and (min-width: 600px) {
+  .topBar {
+    justify-content: space-between;
+  }
 }
 
 .topBar h1 {
+  color: White;
   margin: 0;
   line-height: normal;
 }
 
-.header-home-link {
-  color: var(--evening);
-  font-weight: 500;
-  letter-spacing: 5px;
+.header-small-home-link {
+  color: White;
+  font-weight: 100;
   text-decoration: none;
+  font-size: 1.25rem;
+}
+.header-small-home-link:hover {
+  color: inherit;
+}
+@media only screen and (min-width: 600px) {
+  .header-small-home-link {
+    display: none
+  }
 }
 
-.header-about-link {
-  font-size: 1.5rem;
+
+/* BIG home link */
+.header-big-home-link {
+  display: none
+}
+/* if larger, display big link to home */
+@media only screen and (min-width: 600px) {
+.header-big-home-link {
+  display: block;
+  color: White;
+  font-weight: 100;
+  letter-spacing: -4px;
+  text-decoration: none;
+}
+}
+
+.header-home-link:hover {
+  color: white
+}
+
+.header-link-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+}
+
+.header-link-list li {
+  font-size: 1.25rem;
+  margin: 0;
+  margin-right: 50px;
+  color: White;
+}
+
+.header-link {
+  color: White;
+  font-weight: 100;
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+
+.header-link:hover {
+  color: inherit;
 }

@@ -13,6 +13,17 @@ html {
   background-color: var(--evening);
 }
 
+/* padding for main content of website! */
+.body-container {
+  padding: 0px 1rem
+}
+
+@media only screen and (min-width:768px) {
+  .body-container {
+    padding: 0px 4rem;
+  }
+}
+
 .title-splash {
   display: flex;
   align-items: center;
@@ -135,19 +146,42 @@ html {
 }
 
 .footer-icon {
-  height: 25px;
-  width: 25px;
+  height: 15px;
+  width: 15px;
   margin-bottom: 0px
 }
 
 .page-footer {
-  /* margin-top: 1rem; */
-  background: linear-gradient(180deg, rgba(152, 135, 143, .6) 0%,rgba(152, 135, 143, .9) 100%);
+  margin-top: 2rem;
+  border-top: 2px solid var(--stormy);
+  font-weight: 100;
+  font-size: 1em;
   display: flex;
-  padding: 0.5rem;
+  padding: 1em 0;
   height: 3rem;
   align-items: center;
+  justify-content: space-around;
+}
+
+@media only screen and (min-width: 768px) {
+
+  .footer-icon {
+  height: 25px;
+  width: 25px;
+  margin-bottom: 0px
+  }
+
+  .page-footer {
+  padding: 1em 2em;
+  height: 3rem;
+  font-size: 1em;
+  align-items: center;
   justify-content: space-between;
+  }
+}
+
+.footer-info {
+  color: White
 }
 
 @media only screen and (max-width:768px) {

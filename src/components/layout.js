@@ -56,23 +56,18 @@ const Layout = ({ children }) => (
         <TypographyStyle typography={typography} />
         <GoogleFont typography={typography} />
         <div className="master-container">
-          <Header siteTitle={data.homepageInfo.homepageTitle} />
+
           <div
             className="body-container"
-            style={{
-              margin: `0 auto`,
-              padding: `0px 4rem`,
-              paddingTop: 0,
-            }}
           >
+          <Header siteTitle={data.homepageInfo.homepageTitle} />
             {children}
-            </div>
             <footer className="page-footer">
             <div className="footer-info">
               Sean Cotterill, 2019
             </div>
             <ul className="footer-icons">
-              <span style={{marginRight: `10px`}}>Created using:</span>
+              <span style={{marginRight: `10px`, color: `White`}}>Created using:</span>
               {
                 data.builtIcons.technologyIcons.map(data => {
                   return(
@@ -86,6 +81,7 @@ const Layout = ({ children }) => (
               }
               </ul>
             </footer>
+            </div>
           </div>
       </>
     )}
