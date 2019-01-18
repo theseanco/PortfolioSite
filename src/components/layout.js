@@ -59,11 +59,6 @@ const Layout = ({ children }) => (
 
           <div
             className="body-container"
-            style={{
-              margin: `0 auto`,
-              padding: `0px 4rem`,
-              paddingTop: 0,
-            }}
           >
           <Header siteTitle={data.homepageInfo.homepageTitle} />
             {children}

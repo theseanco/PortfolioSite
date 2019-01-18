@@ -36,7 +36,7 @@ const typography = new Typography(moragaTheme)
 //DESTRUCTURE THIS.
 class IndexPage extends React.Component {
 
-  
+
 
   componentDidMount() {
 
@@ -75,7 +75,7 @@ render() {
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
 
     <div className={animateText}>
-      <h1 style={{fontSize: '4rem', fontWeight: 500}}>{homepageTitle}</h1>
+      <h1 style={{fontSize: '4rem', fontWeight: 500}}>Sean Cotterill</h1>
       <h2>{homepageSubtitle}</h2>
       {/*
         this.props.location.state.animated === null ? <div> No animation </div> : <div> Animation </div>

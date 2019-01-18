@@ -21,8 +21,8 @@ const SecondPage = ({data}) => (
           {
             data.contentfulAuthor.linkList.links.map(data => {
               return (
-                <li key={data.LinkType}>
-                  <a href={data.Link}>
+                <li key={data.LinkType} >
+                  <a href={data.Link} className="header-link">
                     {data.LinkType}
                   </a>
                 </li>
