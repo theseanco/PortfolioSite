@@ -23,27 +23,33 @@ const Header = ({ siteTitle }) => (
   <div
     className="topBar"
   >
-          <h1>
+        <h1 className="header-big-home-link">
           {/*THESE ARE CONDITIONALLY RENDERED BASED ON MEDIA QUERIES!*/}
-        <Link className="header-big-home-link"
+        <Link
           to="/"
           state={{
             noAnimation: true
+          }}
+          style={{
+            color: `inherit`,
+            textDecoration: `none`
           }}
         >
           {siteTitle}
         </Link>
         </h1>
-        <Link className="header-small-home-link"
-          to="/"
-          state={{
-            noAnimation: true
-          }}
-        >
-          Home
-        </Link>
 
         <ul className="header-link-list">
+          <li>
+            <Link className="header-small-home-link"
+              to="/"
+              state={{
+                noAnimation: true
+              }}
+            >
+            Home
+          </Link>
+        </li>
           {
             data.contentfulAuthor.linkList.links.map(data => {
               return (
