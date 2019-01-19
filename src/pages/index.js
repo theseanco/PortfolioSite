@@ -7,32 +7,6 @@ import { Link, graphql } from 'gatsby'
 
 import SEO from '../components/seo'
 
-//import more typography things. Necessary as I am loading from outside of the layout
-import { TypographyStyle, GoogleFont } from 'react-typography';
-
-//Typography JS Things
-import Typography from 'typography'
-import moragaTheme from 'typography-theme-moraga'
-
-//override styles
-moragaTheme.overrideThemeStyles = (options) => ({
-  'h1,h2,h3': {
-    Color: 'BlanchedAlmond',
-    textAlign: 'center'
-  },
-  'h2': {
-    textAlign: 'center'
-  },
-  'h3': {
-    fontSize: '2rem'
-  },
-  'p' : {
-    Color: 'BlanchedAlmond',
-  }
-})
-
-const typography = new Typography(moragaTheme)
-
 //DESTRUCTURE THIS.
 class IndexPage extends React.Component {
 
@@ -69,9 +43,6 @@ render() {
 
   return(
   <div>
-  <TypographyStyle typography={typography} />
-  <GoogleFont typography={typography} />
-
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
 
     <div className={animateText}>
