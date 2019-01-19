@@ -91,7 +91,9 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  position: relative;
   }
+
 /* Text opacity animation code */
 .animate-blur {
   filter: blur(5px);
@@ -112,6 +114,7 @@ html {
 }
 
 .fade-overlay {
+  position: absolute;
   height: 100%;
   width: 100%;
   transition: var(--fadein) ease-out;
@@ -188,4 +191,11 @@ html {
   .footer-info {
     display: none
   }
+}
+
+.index-category-image {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
 }
