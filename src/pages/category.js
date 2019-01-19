@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import Img from 'gatsby-image'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
@@ -27,11 +28,8 @@ const CategoryPage = ({
         works.map(work => {
           //available: work ID, Title, Slug, summary(.internal.content)
           return (
-            <div
-              className="workImage"
-              style={{backgroundImage: `url(http:${work.featuredImage.file.url})`}}
-              key={work.id}
-            >
+            <div className="workImageContainer" key={work.id}>
+            <Img className="work-image" fluid={work.featuredImage.fluid} />
             <Link
               to={`/${slug}/${work.slug}`}
               style={{

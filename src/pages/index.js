@@ -4,6 +4,7 @@ OPTIMIZE: : There is code repetition here, abstract this out into a component
 
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import Img from 'gatsby-image'
 
 import SEO from '../components/seo'
 
@@ -60,8 +61,8 @@ render() {
             <div
               className={animateBlur}
               key={data.id}
-              style={{backgroundImage: `url(http:${data.categoryPicture.file.url})`}}
             >
+              <Img className="index-category-image" style={{position: `absolute`}} fluid={data.categoryPicture.fluid} />
               <Link
                 to={data.slug}
                 style={{
@@ -83,9 +84,8 @@ render() {
       <div
         className={animateBlur}
         key={authorPage.id}
-        style={{backgroundImage:
-        `url(http:${authorPage.sectionCardPhoto.file.url})`}}
       >
+      <Img className="index-category-image" style={{position: `absolute`}} fluid={authorPage.sectionCardPhoto.fluid} />
         <Link
           to={authorPage.slug}
           style={{
@@ -110,7 +110,7 @@ render() {
 }
 
 export const query = graphql`
-{
+  {
   contentfulHomepage {
     homepageTitle
     homepageSubtitle
@@ -119,8 +119,9 @@ export const query = graphql`
       id
       slug
       categoryPicture {
-        file {
-          url
+        id
+        fluid {
+          ...GatsbyContentfulFluid
         }
       }
     }
@@ -128,8 +129,8 @@ export const query = graphql`
       slug
       sectionCardPhoto {
         id
-        file {
-          url
+        fluid {
+          ...GatsbyContentfulFluid
         }
       }
     }
