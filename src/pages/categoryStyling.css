@@ -15,13 +15,19 @@
 
 
 /* background image is fed into grid divs */
-.workImage {
-  padding-top: 100%;
+.workImageContainer {
+  /* padding-top: 100%; */
   width: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+}
+
+.work-image {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 .fade-overlay-grid {
