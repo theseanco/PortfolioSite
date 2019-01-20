@@ -1,4 +1,3 @@
-// OPTIMIZE: GET RID OF UNNECESSARILY QUERIED TECHNOLOGY VALUES
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 import Img from 'gatsby-image';
@@ -24,7 +23,7 @@ const WorkPage = ({data: {
     technologyIcons
   }
 }}) => (
-  <Layout>
+    <Layout>
     <SEO title={title} />
     <div className="work-grid-container">
       <div className="work-text-area">
@@ -39,9 +38,9 @@ const WorkPage = ({data: {
           }
         </div>
         <div className="work-description">
-          <p className="work-text" dangerouslySetInnerHTML={{
+          <div className="work-text" dangerouslySetInnerHTML={{
             __html: description.childMarkdownRemark.html
-          }}/>
+          }} / >
         </div>
         <ul className="iconList">
         {/* Conditional rendering of icons */}
@@ -50,7 +49,7 @@ const WorkPage = ({data: {
               return (
                 <li key={data.id}>
                   <div className="icon">
-                    <img src={`http://${data.file.url}`} alt={data.title} />
+                    <img src={`https://${data.file.url}`} alt={data.title} />
                   </div>
                 </li>
               )

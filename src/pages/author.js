@@ -14,7 +14,7 @@ const SecondPage = ({data}) => (
       <div className="author-text-area">
         <h1>{data.contentfulAuthor.name}</h1>
         <div className="author-description">
-          <p dangerouslySetInnerHTML={{
+          <div dangerouslySetInnerHTML={{
             __html: data.contentfulAuthor.bodyText.childMarkdownRemark.html
           }}/>
         </div>
