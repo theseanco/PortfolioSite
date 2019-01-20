@@ -11,10 +11,32 @@ import SEO from '../components/seo'
 //DESTRUCTURE THIS.
 class IndexPage extends React.Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      animateText: "doNotDisplay",
+      animateBlur: "category-container"
+    }
+  }
 
 
   componentDidMount() {
+    const { state } = this.props.location;
 
+    /*
+      If state is null, this page has been loaded from a URL, so play the animation. If it is NOT null, it _CURRENTLY_ should not animate as it has been navigated to from within the site.
+    */
+    if (state === null) {
+      this.setState({
+      animateText: "title-splash-bg animate-title",
+      animateBlur: "category-container animate-blur"
+      });
+    } else {
+      this.setState({
+      animateText: "doNotDisplay",
+      animateBlur: "category-container"
+      })
+    }
   }
 
 render() {
@@ -28,25 +50,11 @@ render() {
       }
     } = this.props.data
 
-  const { state } = this.props.location;
-
-  let animateText, animateBlur;
-  /*
-    If state is null, this page has been loaded from a URL, so play the animation. If it is NOT null, it _CURRENTLY_ should not animate as it has been navigated to from within the site.
-  */
-  if (state === null) {
-    animateText = "title-splash-bg animate-title"
-    animateBlur = "category-container animate-blur"
-  } else {
-    animateText = "doNotDisplay"
-    animateBlur = "category-container"
-  }
-
   return(
   <div>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
 
-    <div className={animateText}>
+    <div className={this.state.animateText}>
       <h1 style={{fontSize: '4rem', fontWeight: 500}}>Sean Cotterill</h1>
       <h2>{homepageSubtitle}</h2>
       {/*
@@ -59,7 +67,7 @@ render() {
         categories.map((data) => {
           return (
             <div
-              className={animateBlur}
+              className={this.state.animateBlur}
               key={data.id}
             >
               <Img className="index-category-image" style={{position: `absolute`}} fluid={data.categoryPicture.fluid} />
@@ -82,7 +90,7 @@ render() {
       }
 
       <div
-        className={animateBlur}
+        className={this.state.animateBlur}
         key={authorPage.id}
       >
       <Img className="index-category-image" style={{position: `absolute`}} fluid={authorPage.sectionCardPhoto.fluid} />
