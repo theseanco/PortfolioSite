@@ -50,7 +50,7 @@ const WorkPage = ({data: {
               return (
                 <li key={data.id}>
                   <div className="icon">
-                    <img src={`http://${data.file.url}`} alt={data.title} />
+                    <img src={`https://${data.file.url}`} alt={data.title} />
                   </div>
                 </li>
               )
