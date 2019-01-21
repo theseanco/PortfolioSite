@@ -1,4 +1,4 @@
 
 
 
-portfolio site (WIP) built with Gatsby and Contentful
+site built with Gatsby and Contentful
