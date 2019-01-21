@@ -73,7 +73,7 @@ html {
   display: none
 }
 
-.flex-container {
+.flex-container-index {
   height: 100vh;
   display: flex;
   flex-direction: column;
