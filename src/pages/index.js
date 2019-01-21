@@ -15,12 +15,17 @@ class IndexPage extends React.Component {
     super(props)
     this.state = {
       animateText: "doNotDisplay",
-      animateBlur: "category-container"
+      animateBlur: "category-container",
+      loading: true
     }
   }
 
+  componentWillMount() {
+    this.setState({loading: true})
+  }
 
   componentDidMount() {
+    this.setState({loading: false})
     const { state } = this.props.location;
 
     /*
@@ -50,6 +55,12 @@ render() {
       }
     } = this.props.data
 
+    if(this.state.loading) {
+      return(
+        <div></div>
+      )
+    }
+
   return(
   <div>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
@@ -62,7 +73,7 @@ render() {
       */}
     </div>
 
-    <div className="flex-container">
+    <div className="flex-container-index">
       {
         categories.map((data) => {
           return (
