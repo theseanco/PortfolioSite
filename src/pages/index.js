@@ -46,8 +46,6 @@ class IndexPage extends React.Component {
 
 render() {
 
-  console.log(this.props.location)
-
   const {
       contentfulHomepage: {
         homepageTitle,
