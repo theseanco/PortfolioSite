@@ -29,10 +29,46 @@
 .header-small-home-link:hover {
   color: inherit;
 }
-@media only screen and (min-width: 600px) {
+
+@media only screen and (min-width: 768px) {
   .header-small-home-link {
     display: none
   }
+}
+
+/* CSS for links to GitHub/LinkedIn etc. Not required for mobile mode, but necessary for desktop */
+.header-link-pages {
+  display: none
+}
+
+.header-link-pages:hover {
+  color: inherit;
+}
+
+@media only screen and (min-width: 768px) {
+  .header-link-pages {
+  display: block;
+  color: White;
+  font-weight: 100;
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+
+.header-link-pages:hover {
+  color: inherit;
+}
+}
+
+@media only screen and (min-width: 600px) {
+  .header-link-pages {
+  display: block;
+  color: White;
+  font-weight: 100;
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+
+
 }
 
 
@@ -41,7 +77,7 @@
   display: none
 }
 /* if larger, display big link to home */
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 768px) {
 .header-big-home-link {
   display: block;
   color: White;
