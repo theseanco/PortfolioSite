@@ -54,7 +54,7 @@ const Header = ({ siteTitle }) => (
             data.contentfulAuthor.linkList.links.map(data => {
               return (
                 <li key={`header-${data.linkType}`}>
-                  <a href={data.Link} className="header-link">
+                  <a href={data.Link} className="header-link-pages">
                     {data.LinkType}
                   </a>
                 </li>
