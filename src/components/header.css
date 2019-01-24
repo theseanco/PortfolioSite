@@ -8,11 +8,6 @@
   border-bottom: 2px solid var(--stormy);
   margin-bottom: 2rem;
 }
-@media only screen and (min-width: 600px) {
-  .topBar {
-    justify-content: space-between;
-  }
-}
 
 .topBar h1 {
   color: White;
@@ -30,12 +25,6 @@
   color: inherit;
 }
 
-@media only screen and (min-width: 768px) {
-  .header-small-home-link {
-    display: none
-  }
-}
-
 /* CSS for links to GitHub/LinkedIn etc. Not required for mobile mode, but necessary for desktop */
 .header-link-pages {
   display: none
@@ -45,47 +34,12 @@
   color: inherit;
 }
 
-@media only screen and (min-width: 768px) {
-  .header-link-pages {
-  display: block;
-  color: White;
-  font-weight: 100;
-  text-decoration: none;
-  font-size: 1.25rem;
-}
-
-.header-link-pages:hover {
-  color: inherit;
-}
-}
-
-@media only screen and (min-width: 600px) {
-  .header-link-pages {
-  display: block;
-  color: White;
-  font-weight: 100;
-  text-decoration: none;
-  font-size: 1.25rem;
-}
-
-
-}
-
-
 /* BIG home link */
 .header-big-home-link {
   display: none
 }
 /* if larger, display big link to home */
-@media only screen and (min-width: 768px) {
-.header-big-home-link {
-  display: block;
-  color: White;
-  font-weight: 100;
-  letter-spacing: -4px;
-  text-decoration: none;
-}
-}
+
 
 .header-home-link:hover {
   color: white
@@ -115,4 +69,59 @@
 
 .header-link:hover {
   color: inherit;
+}
+
+@media only screen and (min-width: 600px) {
+  .topBar {
+    justify-content: space-between;
+  }
+
+  .header-link-pages {
+  display: block;
+  color: White;
+  font-weight: 100;
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+
+.header-link-list li {
+    padding: 0 0.4rem
+  }
+
+  .header-link-list {
+    width: 100%
+  }
+}
+
+
+@media only screen and (min-width: 768px) {
+  .header-small-home-link {
+    display: none
+  }
+
+
+
+  .header-big-home-link {
+    display: block;
+    color: White;
+    font-weight: 100;
+    letter-spacing: -4px;
+    text-decoration: none;
+  }
+
+  .header-link-pages {
+  display: block;
+  color: White;
+  font-weight: 100;
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+
+
+}
+
+@media only screen and (min-width: 1024px) {
+  .header-link-list li {
+    padding: 0 1rem
+  }
 }
