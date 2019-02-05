@@ -77,12 +77,24 @@ html {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content:space-around;
+  justify-content: space-around;
   align-items: center;
 }
 
+
 .category-container {
   height: 100%;
+  margin: 1rem;
+  width: 90%;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  }
+
+  /*
+  category container backup
+  .category-container {
+  height: 33%;
   width: 90%;
   margin: 1rem;
   display: flex;
@@ -93,6 +105,7 @@ html {
   background-position: center;
   position: relative;
   }
+  */
 
 /* Text opacity animation code */
 .animate-blur {
