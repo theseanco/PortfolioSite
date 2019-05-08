@@ -9,18 +9,18 @@ import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 // import './layout.css'
 
-
 import Header from './header'
+import Footer from './footer'
 
 const Layout = ({ children }) => (
   <StaticQuery
     query={graphql`
       {
-        homepageInfo: contentfulHomepage(slug: {eq: "home"}) {
+        homepageInfo: contentfulHomepage(slug: { eq: "home" }) {
           id
           homepageTitle
         }
-        builtIcons: contentfulWork(slug: {eq: "sean-cotterill-portfolio"}) {
+        builtIcons: contentfulWork(slug: { eq: "sean-cotterill-portfolio" }) {
           technologyIcons {
             id
             title
@@ -34,33 +34,12 @@ const Layout = ({ children }) => (
     render={data => (
       <>
         <div className="master-container">
-
-          <div
-            className="body-container"
-          >
-          <Header siteTitle={data.homepageInfo.homepageTitle} />
+          <div className="body-container">
+            <Header siteTitle={data.homepageInfo.homepageTitle} />
             {children}
-            <footer className="page-footer">
-            <div className="footer-info">
-              Sean Cotterill, 2019
-            </div>
-            <ul className="footer-icons">
-              <span style={{marginRight: `10px`, color: `White`}}>Created using:</span>
-              {
-                data.builtIcons.technologyIcons.map(data => {
-                  return(
-                    <li key={data.id} className="footer-icon">
-                      <div className="footer-icon" key={data.id}>
-                        <img src={`https://${data.file.url}`} alt={data.title} />
-                      </div>
-                    </li>
-                  )
-                })
-              }
-              </ul>
-            </footer>
-            </div>
+            <Footer />
           </div>
+        </div>
       </>
     )}
   />
