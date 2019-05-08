@@ -162,3 +162,11 @@ A hack to get intro animation to work:
     z-index: -99
   }
 }
+
+# 8th May 2019 todo:
+
+- Clearly focusable work/link tabs
+- PWA offline support, inc splash screen
+- Icons at the bottom are too small at smaller screen sizes
+- List of links in the header isn't accessible
+- update deps

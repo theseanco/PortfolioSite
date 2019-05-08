@@ -18,61 +18,55 @@ const Header = ({ siteTitle }) => (
           }
         }
       }
-      `}
-      render={data => (
-  <header
-    className="topBar"
-  >
+    `}
+    render={data => (
+      <header className="topBar">
         <h1 className="header-big-home-link">
           {/*THESE ARE CONDITIONALLY RENDERED BASED ON MEDIA QUERIES!*/}
-        <Link
-          to="/"
-          state={{
-            noAnimation: true
-          }}
-          style={{
-            color: `inherit`,
-            textDecoration: `none`
-          }}
-        >
-          {siteTitle}
-        </Link>
+          <Link
+            to="/"
+            state={{
+              noAnimation: true,
+            }}
+            style={{
+              color: `inherit`,
+              textDecoration: `none`,
+            }}
+          >
+            {siteTitle}
+          </Link>
         </h1>
 
         <ul className="header-link-list">
           <li>
-            <Link className="header-small-home-link"
+            <Link
+              className="header-small-home-link"
               to="/"
               state={{
-                noAnimation: true
+                noAnimation: true,
               }}
             >
-            Home
-          </Link>
-        </li>
-          {
-            data.contentfulAuthor.linkList.links.map(data => {
-              return (
-                <li key={`header-${data.linkType}`}>
-                  <a href={data.Link} className="header-link-pages">
-                    {data.LinkType}
-                  </a>
-                </li>
-              )
-            })
-          }
+              Home
+            </Link>
+          </li>
+          {data.contentfulAuthor.linkList.links.map(data => {
+            return (
+              <li key={`header-${data.LinkType}`}>
+                <a href={data.Link} className="header-link-pages">
+                  {data.LinkType}
+                </a>
+              </li>
+            )
+          })}
           <li>
-            <Link
-            className="header-link"
-              to="/about"
-              >About</Link>
+            <Link className="header-link" to="/about">
+              About
+            </Link>
           </li>
         </ul>
-
-
-  </header>
-)}
-/>
+      </header>
+    )}
+  />
 )
 
 export default Header
