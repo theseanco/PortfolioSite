@@ -20,7 +20,7 @@ const Header = ({ siteTitle }) => (
       }
       `}
       render={data => (
-  <div
+  <header
     className="topBar"
   >
         <h1 className="header-big-home-link">
@@ -70,7 +70,7 @@ const Header = ({ siteTitle }) => (
         </ul>
 
 
-  </div>
+  </header>
 )}
 />
 )
