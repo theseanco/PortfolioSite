@@ -1,8 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
+import styled from 'styled-components'
 
-const Footer = ({ data }) => (
+const Footer = styled.footer`
+  color: ${props => props.theme.colors.newColor}
+`
+
+const PageFooter = ({ data }) => (
   <StaticQuery
     query={graphql`
       {
@@ -19,10 +24,10 @@ const Footer = ({ data }) => (
     `}
     render={data => (
       <>
-        <footer className="page-footer">
+        <Footer className="page-footer">
           <div className="footer-info">Sean Cotterill, 2019</div>
           <ul className="footer-icons">
-            <span style={{ marginRight: `10px`, color: `White` }}>
+              <span style={{ marginRight: `10px`, color: `White` }}>
               Created using:
             </span>
             {data.builtIcons.technologyIcons.map(data => {
@@ -35,10 +40,10 @@ const Footer = ({ data }) => (
               )
             })}
           </ul>
-        </footer>
+        </Footer>
       </>
     )}
   />
 )
 
-export default Footer
+export default PageFooter

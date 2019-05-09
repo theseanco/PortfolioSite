@@ -7,10 +7,14 @@ The query here gets information about the title of the site, as well as icons to
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
+import styled, { ThemeProvider } from 'styled-components'
 // import './layout.css'
 
 import Header from './header'
 import Footer from './footer'
+
+//styled-components theme
+import theme from '../theme'
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -33,13 +37,15 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <>
-        <div className="master-container">
-          <div className="body-container">
-            <Header siteTitle={data.homepageInfo.homepageTitle} />
-            {children}
-            <Footer />
+        <ThemeProvider theme={theme}>
+          <div className="master-container">
+            <div className="body-container">
+              <Header siteTitle={data.homepageInfo.homepageTitle} />
+              {children}
+              <Footer />
+            </div>
           </div>
-        </div>
+        </ThemeProvider>
       </>
     )}
   />
