@@ -4,7 +4,24 @@ import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 
 const Footer = styled.footer`
-  color: ${props => props.theme.colors.newColor}
+  align-items: center;
+  border-top: 2px solid ${props => props.theme.colors.stormy};
+  display: flex;
+  font-weight: 100;
+  font-size: 1em;
+  height: 3rem;
+  justify-content: space-around;
+  margin-top: 2rem;
+  padding: 1em 0;
+
+	/* Uses media queries for desktop styling */
+	${props => props.theme.media.desktop`
+		align-items: center;
+		font-size: 1em;
+		height: 3rem;
+		justify-content: space-between;
+		padding: 1em 2em;
+	`}
 `
 
 const PageFooter = ({ data }) => (
@@ -24,7 +41,7 @@ const PageFooter = ({ data }) => (
     `}
     render={data => (
       <>
-        <Footer className="page-footer">
+        <Footer>
           <div className="footer-info">Sean Cotterill, 2019</div>
           <ul className="footer-icons">
               <span style={{ marginRight: `10px`, color: `White` }}>
