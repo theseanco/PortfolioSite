@@ -10,8 +10,8 @@ import { StaticQuery, graphql } from 'gatsby'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 // import './layout.css'
 
-import Header from './header'
-import Footer from './footer'
+import Header from './Header/header'
+import Footer from './Footer/footer'
 
 //styled-components theme
 import theme from '../theme'
@@ -65,6 +65,11 @@ const GlobalStyle = createGlobalStyle`
 		border-collapse: collapse;
 		border-spacing: 0;
 	}
+  html {
+    height: 100%;
+    width: 100%;
+    background-color: ${props => props.theme.colors.evening}
+  }
 `
 
 const Layout = ({ children }) => (
@@ -90,7 +95,8 @@ const Layout = ({ children }) => (
       <>
         <ThemeProvider theme={theme}>
 						<div className="master-container">
-							<div className="body-container">
+              <div className="body-container">
+                <GlobalStyle />
 								<Header siteTitle={data.homepageInfo.homepageTitle} />
 								{children}
 								<Footer />
