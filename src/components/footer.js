@@ -1,9 +1,6 @@
 /*
  *   todo:
- *   - That wierd span that is in the wrong place next to the list
- *   - Rest of the styled-components
  *   - Is list of imgs accessible?
- *   - ***CSS RESET!!!*** It's partially implemented in Layout but not working fully
  */
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -65,18 +62,22 @@ const FooterIcons = styled.ul`
 
 // The build icons themselves
 const FooterIcon = styled.img`
-  height: 15px;
+  height: 1.5rem;
   margin-bottom: 0px;
-  width: 15px;
+  width: 1.5rem;
 
   ${props => props.theme.media.tablet`
-    height: 25px;
-    width: 25px;
+    height: 1.5rem;
+    width: 1.5rem;
   `}
 `
 
 const CreatedUsing = styled.span`
-  color: White
+  align-items: center;
+  color: White;
+  display: flex;
+  justify-content: center;
+  margin-right: 1rem;
 `
 
 const PageFooter = ({ data }) => (
