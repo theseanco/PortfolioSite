@@ -1,8 +1,39 @@
+/*
+ * - Is H1 tag good for accessibility?
+ * - Finish styling
+ *
+ *
+ */
+
 import { Link, StaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
+import styled from 'styled-components'
 
-import './header.css'
+const StyledHeader = styled.header`
+  align-items: center;
+  border-bottom: 2px solid var(--stormy);
+  color: White;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+  padding: 1em 2em;
+
+  h1 {
+    display: none;
+  }
+
+  ${props => props.theme.media.tablet`
+    h1 {
+      color: White;
+      display: block;
+      font-size: 2.5rem;
+      font-weight: 100;
+      letter-spacing: -4px;
+      text-decoration: none;
+    }
+  `}
+`
 
 const Header = ({ siteTitle }) => (
   <StaticQuery
@@ -20,7 +51,7 @@ const Header = ({ siteTitle }) => (
       }
     `}
     render={data => (
-      <header className="topBar">
+      <StyledHeader>
         <h1 className="header-big-home-link">
           {/*THESE ARE CONDITIONALLY RENDERED BASED ON MEDIA QUERIES!*/}
           <Link
@@ -64,7 +95,7 @@ const Header = ({ siteTitle }) => (
             </Link>
           </li>
         </ul>
-      </header>
+      </StyledHeader>
     )}
   />
 )
