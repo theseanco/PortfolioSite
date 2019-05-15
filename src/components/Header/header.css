@@ -1,19 +1,4 @@
 /* responsive top bar placing elements at ends */
-.topBar {
-  color: White;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 1em 2em;
-  border-bottom: 2px solid var(--stormy);
-  margin-bottom: 2rem;
-}
-
-.topBar h1 {
-  color: White;
-  margin: 0;
-  line-height: normal;
-}
 
 .header-small-home-link {
   color: White;
@@ -34,10 +19,6 @@
   color: inherit;
 }
 
-/* BIG home link */
-.header-big-home-link {
-  display: none
-}
 /* if larger, display big link to home */
 
 
@@ -45,20 +26,7 @@
   color: white
 }
 
-.header-link-list {
-  list-style-type: none;
-  display: flex;
-  flex-direction: row;
-  margin: 0;
-  justify-content: space-between;
-}
 
-.header-link-list li {
-  font-size: 1.25rem;
-  padding: 0 1rem;
-  margin: 0;
-  color: White;
-}
 
 .header-link {
   color: White;
@@ -84,14 +52,6 @@
   font-size: 1.25rem;
 }
 
-.header-link-list li {
-    padding: 0 0.4rem
-  }
-
-  .header-link-list {
-    width: 100%
-  }
-}
 
 
 @media only screen and (min-width: 768px) {
@@ -100,14 +60,6 @@
   }
 
 
-
-  .header-big-home-link {
-    display: block;
-    color: White;
-    font-weight: 100;
-    letter-spacing: -4px;
-    text-decoration: none;
-  }
 
   .header-link-pages {
   display: block;
@@ -118,10 +70,4 @@
 }
 
 
-}
-
-@media only screen and (min-width: 1024px) {
-  .header-link-list li {
-    padding: 0 1rem
-  }
 }
