@@ -27,6 +27,10 @@ const StyledHeader = styled.header`
     }
   }
 
+  ${props => props.theme.media.phone`
+    justify-content: space-between;
+  `}
+
   ${props => props.theme.media.tablet`
     h1 {
 
@@ -72,6 +76,40 @@ const HeaderLinkList = styled.nav`
   `}
 `
 
+const HeaderSmallHomeLink = styled(Link)`
+  color: White;
+  font-weight: 100;
+  text-decoration: none;
+  font-size: 1.25rem;
+
+  &:hover {
+    color: inherit;
+  }
+
+  ${props => props.theme.media.tablet`
+    display: none;
+  `}
+`
+
+const HeaderLinkPages = styled.a`
+  display: none
+
+  ${props => props.theme.media.phone`
+    color: White;
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 100;
+    text-decoration: none;
+  `}
+`
+
+const AboutLink = styled(Link)`
+  color: white;
+  font-weight: 100;
+  text-decoration: none;
+  font-size: 1.25rem;
+`
+
 const Header = ({ siteTitle }) => (
   <StaticQuery
     query={graphql`
@@ -102,7 +140,7 @@ const Header = ({ siteTitle }) => (
         </h1>
 
         <HeaderLinkList>
-            <Link
+            <HeaderSmallHomeLink
               className="header-small-home-link"
               to="/"
               state={{
@@ -110,19 +148,19 @@ const Header = ({ siteTitle }) => (
               }}
             >
               Home
-            </Link>
+            </HeaderSmallHomeLink>
           {data.contentfulAuthor.linkList.links.map(data => {
             return (
               <li key={`header-${data.LinkType}`}>
-                <a href={data.Link} className="header-link-pages">
+                <HeaderLinkPages href={data.Link}>
                   {data.LinkType}
-                </a>
+                </HeaderLinkPages>
               </li>
             )
           })}
-            <Link className="header-link" to="/about">
+            <AboutLink to="/about">
               About
-            </Link>
+            </AboutLink>
         </HeaderLinkList>
       </StyledHeader>
     )}
