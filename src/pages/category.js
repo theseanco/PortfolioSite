@@ -1,3 +1,11 @@
+/*
+ * TODO:
+ * 
+ * - Semantic components
+ *
+ *
+ */
+
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
@@ -6,6 +14,45 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 
 import './categoryStyling.css'
+
+const TitleContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100%
+`
+
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 4em;
+  
+  ${props => props.theme.media.tablet`
+     grid-template-columns: 1fr 1fr;
+  `}
+`
+
+const WorkImageContainer = styled.div`
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+`
+
+const WorkImage = styled(Img)`  
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+`
+
+const StyledLink = styled(Link)`
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+`
+
 
 const CategoryPage = ({
   data: {
@@ -19,24 +66,19 @@ const CategoryPage = ({
 }) => (
   <Layout>
     <SEO title={categoryName} />
-    <div className="title">
+    <TitleContainer>
       <h1>{categoryName}</h1>
-    </div>
-    <div className="grid-container">
+    </TitleContainer>
+    <GridContainer>
       {
         //create a list of works
         works.map(work => {
           //available: work ID, Title, Slug, summary(.internal.content)
           return (
-            <div className="workImageContainer" key={work.id}>
-            <Img className="work-image" fluid={work.featuredImage.fluid} />
-            <Link
+            <WorkImageContainer key={work.id}>
+            <WorkImage fluid={work.featuredImage.fluid} />
+            <StyledLink
               to={`/${slug}/${work.slug}`}
-              style={{
-              height: `100%`,
-              width: `100%`,
-              textDecoration: `none`
-              }}
               >
               <div className="fade-overlay-grid">
                 <div className="link-grid">
@@ -44,12 +86,12 @@ const CategoryPage = ({
                 <p>{work.summary.internal.content}</p>
                 </div>
               </div>
-              </Link>
-              </div>
+              </StyledLink>
+              </WorkImageContainer>
             )
         })
       }
-    </div>
+    </GridContainer>
     <div className="category-home">
       <Link to="/"
         state={{
