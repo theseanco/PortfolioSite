@@ -1,8 +1,41 @@
+/*
+ * TODO:
+ *
+ * - Semantic markup
+ * - layout flex-grow
+ *
+ */
+
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import styled from 'styled-components'
 import Img from 'gatsby-image'
 
-import './authorStyling.css'
+const AuthorGrid = styled.div`
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-areas:
+  "authorImage"
+  "authorText";
+
+  ${props => props.theme.media.tablet`
+    grid-template-columns: 2fr 1.75fr;
+    grid-template-areas: "authorText authorImage"
+  `}
+`
+
+const AuthorDescription = styled.div`
+  color: BlanchedAlmond;
+  font-weight: 200;
+`
+
+const AuthorTextArea = styled.div`
+  grid-area: authorText
+`
+
+const AuthorImageArea = styled.div`
+  grid-area: authorImage
+`
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
@@ -10,21 +43,20 @@ import SEO from '../components/seo'
 const SecondPage = ({data}) => (
   <Layout>
     <SEO title="About" />
-    <div className="author-grid-container">
-      <div className="author-text-area">
+    <AuthorGrid>
+      <AuthorTextArea>
         <h1>{data.contentfulAuthor.name}</h1>
-        <div className="author-description">
+        <AuthorDescription>
           <div dangerouslySetInnerHTML={{
             __html: data.contentfulAuthor.bodyText.childMarkdownRemark.html
           }}/>
-        </div>
+        </AuthorDescription>
         <Link to="/">Home</Link>
-      </div>
-      <div className="author-image-area">
+      </AuthorTextArea>
+      <AuthorImageArea>
         <Img fluid={data.contentfulAuthor.headshot.fluid} />
-      </div>
-    </div>
-
+      </AuthorImageArea>
+    </AuthorGrid>
   </Layout>
 )
 
