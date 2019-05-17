@@ -170,3 +170,5 @@ A hack to get intro animation to work:
 - Icons at the bottom are too small at smaller screen sizes
 - List of links in the header isn't accessible
 - update deps
+- Re-write overwritten styles which have been reset.
+- Semantic markup
