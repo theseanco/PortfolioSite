@@ -1,8 +1,7 @@
 /*
  * - Is H1 tag good for accessibility?
  * - Finish styling
- *
- *
+ * - Breakpoints need editing
  */
 
 import { Link, StaticQuery, graphql } from 'gatsby'
@@ -10,6 +9,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
+// Styles for header
 const StyledHeader = styled.header`
   align-items: center;
   border-bottom: 2px solid var(--stormy);
@@ -28,8 +28,8 @@ const StyledHeader = styled.header`
   }
 
   ${props => props.theme.media.tablet`
+    justify-content: space-between;
     h1 {
-
       a {
         color: White;
         display: block;
@@ -38,11 +38,11 @@ const StyledHeader = styled.header`
         letter-spacing: -4px;
         text-decoration: none;
       }
-
     }
   `}
 `
 
+// Style for the links 
 const HeaderLinkList = styled.nav`
   list-style-type: none;
   display: flex;
@@ -51,6 +51,7 @@ const HeaderLinkList = styled.nav`
   justify-content: space-between;
 
   a {
+    font-weight: 100;
     font-size: 1.25rem;
     padding: 0 1rem;
     margin: 0;
@@ -69,6 +70,33 @@ const HeaderLinkList = styled.nav`
     a {
       padding: 0 1rem;
     }
+  `}
+`
+
+// style for page links i.e. github/etc
+const HeaderLinkPages = styled.a`
+  display: none;
+
+  ${props => props.theme.media.smallPhone`
+    display: block;
+    color: White;
+    font-weight: 100;
+    text-decoration: none;
+    font-size: 1.25rem;
+  `}
+`
+
+const SmallHomeLink = styled(Link)`
+  
+  a {
+    color: White;
+    font-weight: 100;
+    text-decoration: none;
+    font-size: 1.25rem;
+  }
+
+  ${props => props.theme.media.tablet`
+    display: none
   `}
 `
 
@@ -102,7 +130,7 @@ const Header = ({ siteTitle }) => (
         </h1>
 
         <HeaderLinkList>
-            <Link
+            <SmallHomeLink
               className="header-small-home-link"
               to="/"
               state={{
@@ -110,17 +138,17 @@ const Header = ({ siteTitle }) => (
               }}
             >
               Home
-            </Link>
+            </SmallHomeLink>
           {data.contentfulAuthor.linkList.links.map(data => {
             return (
               <li key={`header-${data.LinkType}`}>
-                <a href={data.Link} className="header-link-pages">
+                <HeaderLinkPages href={data.Link}>
                   {data.LinkType}
-                </a>
+                </HeaderLinkPages>
               </li>
             )
           })}
-            <Link className="header-link" to="/about">
+            <Link to="/about">
               About
             </Link>
         </HeaderLinkList>
