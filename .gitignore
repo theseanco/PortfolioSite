@@ -71,3 +71,5 @@ yarn-error.log
 
 # Vim Swap Files
 *.swp
+*.swo
+*~

@@ -6,7 +6,6 @@
 
 // You can delete this file if you're not using it
 
-import "./src/components/header.css";
 import "./src/pages/indexStyling.css";
 import "./src/pages/authorStyling.css";
 import "./src/pages/categoryStyling.css";
