@@ -1,8 +1,7 @@
 /*
  * - Is H1 tag good for accessibility?
  * - Finish styling
- *
- *
+ * - Breakpoints need editing
  */
 
 import { Link, StaticQuery, graphql } from 'gatsby'
@@ -10,6 +9,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
+// Styles for header
 const StyledHeader = styled.header`
   align-items: center;
   border-bottom: 2px solid var(--stormy);
@@ -32,8 +32,8 @@ const StyledHeader = styled.header`
   `}
 
   ${props => props.theme.media.tablet`
+    justify-content: space-between;
     h1 {
-
       a {
         color: White;
         display: block;
@@ -42,11 +42,11 @@ const StyledHeader = styled.header`
         letter-spacing: -4px;
         text-decoration: none;
       }
-
     }
   `}
 `
 
+// Style for the links
 const HeaderLinkList = styled.nav`
   list-style-type: none;
   display: flex;
@@ -55,6 +55,7 @@ const HeaderLinkList = styled.nav`
   justify-content: space-between;
 
   a {
+    font-weight: 100;
     font-size: 1.25rem;
     padding: 0 1rem;
     margin: 0;
