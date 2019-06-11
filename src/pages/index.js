@@ -5,8 +5,17 @@ OPTIMIZE: : There is code repetition here, abstract this out into a component
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
+import styled from 'styled-components'
 
 import SEO from '../components/seo'
+
+const FlexContainerIndex = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+`
 
 //DESTRUCTURE THIS.
 class IndexPage extends React.Component {
@@ -73,7 +82,7 @@ render() {
       */}
     </div>
 
-    <div className="flex-container-index">
+    <FlexContainerIndex>
       {
         categories.map((data) => {
           return (
@@ -122,7 +131,7 @@ render() {
           </div>
           </Link>
       </div>
-    </div>
+    </FlexContainerIndex>
     </div>
   )
 }
