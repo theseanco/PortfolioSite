@@ -7,23 +7,6 @@
   --reveal-animation: 3s
 }
 
-html {
-  height: 100%;
-  width: 100%;
-  background-color: var(--evening);
-}
-
-/* padding for main content of website! */
-.body-container {
-  padding: 0px 1rem
-}
-
-@media only screen and (min-width:768px) {
-  .body-container {
-    padding: 0px 4rem;
-  }
-}
-
 .title-splash {
   display: flex;
   align-items: center;
