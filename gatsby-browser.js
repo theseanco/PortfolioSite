@@ -7,4 +7,3 @@
 // You can delete this file if you're not using it
 
 import "./src/pages/indexStyling.css";
-import "./src/pages/workStyling.css"
