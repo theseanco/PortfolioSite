@@ -7,12 +7,6 @@
   --reveal-animation: 3s
 }
 
-html {
-  height: 100%;
-  width: 100%;
-  background-color: var(--evening);
-}
-
 .title-splash {
   display: flex;
   align-items: center;
