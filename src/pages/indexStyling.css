@@ -74,21 +74,7 @@
   position: relative;
   }
 
-  /*
-  category container backup
-  .category-container {
-  height: 33%;
-  width: 90%;
-  margin: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  }
-  */
+
 
 /* Text opacity animation code */
 .animate-blur {
@@ -107,33 +93,4 @@
   100% {
     filter: blur(0px);
   }
-}
-
-.fade-overlay {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  transition: var(--fadein) ease-out;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.fade-overlay:hover {
-  opacity: 0.9;
-  transition: var(--fadein) ease-in;
-  background-color: #985E6D
-}
-
-.link {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.index-category-image {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  position: absolute;
 }
