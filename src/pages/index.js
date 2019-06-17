@@ -9,6 +9,7 @@ TODO:
 - Redo animation in styled-components
 - Why are inline styles needed, e.g. IndexCategoryImage
 - The AnimateBlur element is messy and could be turned into an overlay
+- Make animations work selectively with page transitions and props
 
 */
 
