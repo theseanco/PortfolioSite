@@ -8,6 +8,7 @@ TODO:
 
 - Redo animation in styled-components
 - Why are inline styles needed, e.g. IndexCategoryImage
+- The AnimateBlur element is messy and could be turned into an overlay
 
 */
 
@@ -15,7 +16,7 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import theme from '../theme.js';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, keyframes } from 'styled-components';
 
 import SEO from '../components/seo';
 
@@ -64,6 +65,73 @@ const HoverTitle = styled.h1`
   font-size: 4rem;
   font-weight: 500;
 `
+
+// Animation example
+const blurFadeout = keyframes`
+  0% {
+    filter: blur(5px);
+  }
+
+  60% {
+    filter: blur(5px);
+  }
+
+  100% {
+    filter: blur(0px);
+  }
+`
+
+const CategoryContainerAnimated = styled.div`
+  animation-duration: calc(${props => props.theme.animations.revealAnimation} + 1.5s);
+  animation-name: ${props => {
+    if (props.noAnimation) return 'none'
+    return blurFadeout;
+  }};
+  animation-fill-mode: forwards;
+
+  height: 100%;
+  margin: 1rem;
+  width: 90%;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+`
+
+const TextOpacity = keyframes`
+  0% {
+    opacity: 1;
+    z-index: 3;
+  }
+
+  99% {
+    opacity: 0;
+    z-index: 3;
+  }
+
+  100% {
+    opacity: 0;
+    z-index: -99;
+  }
+`
+
+const AnimateText = styled.div`
+  animation-duration: ${props => props.theme.animations.revealAnimation};
+  animation-name: ${TextOpacity};
+  animation-fill-mode: forwards;
+  animation-delay: 1s;
+  position: fixed;
+  display: ${props => {
+    if (props.noAnimation) return 'none';
+    return 'flex'
+  }};
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  z-index: 3
+`
+
 
 //DESTRUCTURE THIS.
 class IndexPage extends React.Component {
@@ -125,16 +193,15 @@ render() {
     <ThemeProvider theme={theme}>
       <>
         <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-        <div className={this.state.animateText}>
+        <AnimateText>
           <HoverTitle>Sean Cotterill</HoverTitle>
           <h2>{homepageSubtitle}</h2>
-        </div>
+        </AnimateText>
         <FlexContainerIndex>
           {
             categories.map((data) => {
               return (
-                <div
-                  className={this.state.animateBlur}
+                <CategoryContainerAnimated
                   key={data.id}
                 >
                   <IndexCategoryImage style={{position: `absolute`}} fluid={data.categoryPicture.fluid} />
@@ -151,13 +218,12 @@ render() {
                       </IndexCategoryLink>
                     </IndexCategoryOverlay>
                   </Link>
-                </div>
+                </CategoryContainerAnimated>
               )
             })
           }
 
-          <div
-            className={this.state.animateBlur}
+          <CategoryContainerAnimated
             key={authorPage.id}
           >
           <IndexCategoryImage style={{position: `absolute`}} fluid={authorPage.sectionCardPhoto.fluid} />
@@ -177,7 +243,7 @@ render() {
                 </IndexCategoryLink>
               </IndexCategoryOverlay>
               </Link>
-          </div>
+          </CategoryContainerAnimated>
         </FlexContainerIndex>
       </>
       </ThemeProvider>
