@@ -10,6 +10,10 @@ TODO:
 - Why are inline styles needed, e.g. IndexCategoryImage
 - The AnimateBlur element is messy and could be turned into an overlay
 - Make animations work selectively with page transitions and props
+- Tweak the styles that are an issue:
+  - Text sizes
+  - Article page margins
+  - Other stuff
 
 */
 
@@ -135,43 +139,7 @@ const AnimateText = styled.div`
 
 
 //DESTRUCTURE THIS.
-class IndexPage extends React.Component {
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      animateText: "doNotDisplay",
-      animateBlur: "category-container",
-      loading: true
-    }
-  }
-
-  componentWillMount() {
-    this.setState({loading: true})
-  }
-
-  componentDidMount() {
-    this.setState({loading: false})
-    const { state } = this.props.location;
-
-    /*
-      If state is null, this page has been loaded from a URL, so play the animation. If it is NOT null, it _CURRENTLY_ should not animate as it has been navigated to from within the site.
-    */
-    if (state === null) {
-      this.setState({
-      animateText: "title-splash-bg animate-title",
-      animateBlur: "category-container animate-blur"
-      });
-    } else {
-      this.setState({
-      animateText: "doNotDisplay",
-      animateBlur: "category-container"
-      })
-    }
-  }
-
-render() {
-
+const IndexPage = (props) => {
   const {
       contentfulHomepage: {
         homepageTitle,
@@ -179,22 +147,17 @@ render() {
         categories,
         authorPage
       }
-    } = this.props.data
+    } = props.data
 
-    if(this.state.loading) {
-      return(
-        <ThemeProvider theme={theme}>
-          <FlexContainerIndex/>
-        </ThemeProvider>
-      )
-    }
+    const doNotAnimate = props.location && props.location.state ? props.location.state.noAnimation : false
 
+    // console.log(props.location.state.noAnimation)
   return(
     <>
     <ThemeProvider theme={theme}>
       <>
         <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-        <AnimateText>
+        <AnimateText noAnimation={doNotAnimate}>
           <HoverTitle>Sean Cotterill</HoverTitle>
           <h2>{homepageSubtitle}</h2>
         </AnimateText>
@@ -204,6 +167,7 @@ render() {
               return (
                 <CategoryContainerAnimated
                   key={data.id}
+                  noAnimation={doNotAnimate}
                 >
                   <IndexCategoryImage style={{position: `absolute`}} fluid={data.categoryPicture.fluid} />
                   <Link
@@ -226,6 +190,7 @@ render() {
 
           <CategoryContainerAnimated
             key={authorPage.id}
+            noAnimation={doNotAnimate}
           >
           <IndexCategoryImage style={{position: `absolute`}} fluid={authorPage.sectionCardPhoto.fluid} />
             <Link
@@ -250,7 +215,6 @@ render() {
       </ThemeProvider>
     </>
   )
-}
 }
 
 export const query = graphql`
