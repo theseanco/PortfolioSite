@@ -8,6 +8,7 @@ import styled from 'styled-components';
 
 const WorkGridContainer = styled.main`
   display: grid;
+  margin: 0 1rem;
   grid-gap: 2em;
   grid-template-areas:
   "workImage"
@@ -78,7 +79,7 @@ const InternalLinks = styled.ul`
   }
 `
 
-const WorkImage = styled.ul`
+const WorkImage = styled.picture`
   grid-area: workImage
 `
 

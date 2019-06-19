@@ -12,7 +12,7 @@ import styled from 'styled-components'
 // Styles for header
 const StyledHeader = styled.header`
   align-items: center;
-  border-bottom: 2px solid var(--stormy);
+  border-bottom: 2px solid ${props => props.theme.colors.stormy};
   color: White;
   display: flex;
   justify-content: space-around;
