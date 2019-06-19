@@ -8,7 +8,6 @@ import styled from 'styled-components';
 
 const WorkGridContainer = styled.main`
   display: grid;
-  margin: 0 1rem;
   grid-gap: 2em;
   grid-template-areas:
   "workImage"
@@ -18,6 +17,10 @@ const WorkGridContainer = styled.main`
     grid-template-columns: 1fr 1fr;
     grid-template-columns: 2fr 1.75fr;
     grid-template-areas: "workText workImage"
+  `}
+
+  ${props => props.theme.media.desktop`
+    margin: 0 2rem;
   `}
 `
 
@@ -50,6 +53,26 @@ const WorkDescription = styled.section`
 `
 
 const WorkTextContainer = styled.div`
+  blockquote {
+    margin-right: 1.56rem;
+    padding-left: 1.17rem;
+    margin-bottom: 1.56rem;
+    color: hsla(0,0%,0%,0.6);
+    border-left: 0.39rem solid hsla(0,0%,0%,0.13);
+
+    p {
+      font-size: 1.4rem;
+      line-height: 1.56rem;
+    }
+  }
+
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 1.56rem;
+    margin-block-start: 1rem;
+    line-height: 1.56rem;
+    margin-block-end: 1rem;
+  }
 `
 
 const IconList = styled.ul`
@@ -83,6 +106,13 @@ const WorkImage = styled.picture`
   grid-area: workImage
 `
 
+const WorkTitle = styled.h1`
+  font-size: 2.5rem;
+  font-weight: 200;
+  line-height: 1.1;
+  margin-bottom: 1.56rem;
+`
+
 const WorkPage = ({data: {
   getParentCategory: {
     categoryName,
@@ -103,7 +133,7 @@ const WorkPage = ({data: {
     <WorkGridContainer>
       <WorkArticle>
         <header>
-          <h1>{title}</h1>
+          <WorkTitle>{title}</WorkTitle>
           <ExternalLinks>
             {
               link ? <a href={link} target="_blank" rel="noopener noreferrer" >Visit Site</a> : null
