@@ -1,7 +1,8 @@
 /*
+ * TODO!
  * - Is H1 tag good for accessibility?
- * - Finish styling
  * - Breakpoints need editing
+ * - Top nav breakpoint flex container styling
  */
 
 import { Link, StaticQuery, graphql } from 'gatsby'
@@ -20,6 +21,7 @@ const StyledHeader = styled.header`
   padding: 1em 2em;
 
   h1 {
+
     a {
       display: none;
       color: White;
@@ -111,6 +113,14 @@ const AboutLink = styled(Link)`
   font-size: 1.25rem;
 `
 
+const PageTitle = styled.h1`
+  display: none;
+
+  ${props => props.theme.media.smallTablet`
+    display: block
+  `}
+`
+
 const Header = ({ siteTitle }) => (
   <StaticQuery
     query={graphql`
@@ -128,7 +138,7 @@ const Header = ({ siteTitle }) => (
     `}
     render={data => (
       <StyledHeader>
-        <h1>
+        <PageTitle>
           {/*THESE ARE CONDITIONALLY RENDERED BASED ON MEDIA QUERIES!*/}
           <Link
             to="/"
@@ -138,7 +148,7 @@ const Header = ({ siteTitle }) => (
           >
             {siteTitle}
           </Link>
-        </h1>
+        </PageTitle>
 
         <HeaderLinkList>
             <HeaderSmallHomeLink

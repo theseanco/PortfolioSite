@@ -15,6 +15,7 @@ const animations = {
 const sizes = {
   desktop: 992,
   tablet: 768,
+  smallTablet: 600,
   phone: 576,
   smallPhone: 480
 }
@@ -30,7 +31,7 @@ const media = Object.keys(sizes).reduce((acc, label) => {
 }, {})
 
 const theme = {
-  colors, 
+  colors,
   animations,
 	sizes,
 	media
