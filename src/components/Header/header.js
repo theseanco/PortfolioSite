@@ -75,6 +75,8 @@ const HeaderLinkList = styled.nav`
   `}
 
   ${props => props.theme.media.desktop`
+    width: auto;
+
     a {
       padding: 0 1rem;
     }
