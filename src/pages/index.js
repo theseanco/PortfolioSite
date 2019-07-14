@@ -52,6 +52,7 @@ const IndexCategoryLink = styled.div`
   justify-content: center;
 `
 
+// Overlay for animations
 const IndexCategoryOverlay = styled.div`
   position: absolute;
   height: 100%;
@@ -64,11 +65,6 @@ const IndexCategoryOverlay = styled.div`
     opacity: 0.9;
     transition: ${props => props.theme.animations.fadein} ease-in;
   }
-`
-
-const HoverTitle = styled.h1`
-  font-size: 4rem;
-  font-weight: 500;
 `
 
 // Animation example
@@ -119,6 +115,7 @@ const TextOpacity = keyframes`
   }
 `
 
+// Intro text
 const AnimateText = styled.div`
   animation-duration: ${props => props.theme.animations.revealAnimation};
   animation-name: ${TextOpacity};
@@ -134,11 +131,19 @@ const AnimateText = styled.div`
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  z-index: 3
+  z-index: 3;
+
+  h1 {
+    font-weight: 500;
+    font-size: 5rem;
+  }
+
+  p {
+    font-size: 2rem;
+    font-weight: 100;
+  }
 `
 
-
-//DESTRUCTURE THIS.
 const IndexPage = (props) => {
   const {
       contentfulHomepage: {
@@ -158,8 +163,8 @@ const IndexPage = (props) => {
       <>
         <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
         <AnimateText noAnimation={doNotAnimate}>
-          <HoverTitle>Sean Cotterill</HoverTitle>
-          <h2>{homepageSubtitle}</h2>
+          <h1>Sean Cotterill</h1>
+          <p>{homepageSubtitle}</p>
         </AnimateText>
         <FlexContainerIndex>
           {
@@ -171,7 +176,7 @@ const IndexPage = (props) => {
                 >
                   <IndexCategoryImage style={{position: `absolute`}} fluid={data.categoryPicture.fluid} />
                   <Link
-                    to={data.slug}
+                    to={`/${data.slug}`}
                     style={{
                       height: `100%`,
                       width: `100%`,
@@ -179,7 +184,7 @@ const IndexPage = (props) => {
                     }}>
                     <IndexCategoryOverlay>
                       <IndexCategoryLink>
-                        <h3> {data.categoryName} </h3>
+                        <h2> {data.categoryName} </h2>
                       </IndexCategoryLink>
                     </IndexCategoryOverlay>
                   </Link>
@@ -194,7 +199,7 @@ const IndexPage = (props) => {
           >
           <IndexCategoryImage style={{position: `absolute`}} fluid={authorPage.sectionCardPhoto.fluid} />
             <Link
-              to={authorPage.slug}
+              to={`/${authorPage.slug}`}
               style={{
                       height: `100%`,
                       width: `100%`,
@@ -203,9 +208,9 @@ const IndexPage = (props) => {
             >
               <IndexCategoryOverlay>
                 <IndexCategoryLink>
-                  <h3 key={authorPage.id}>
+                  <h2 key={authorPage.id}>
                     About
-                  </h3>
+                  </h2>
                 </IndexCategoryLink>
               </IndexCategoryOverlay>
               </Link>
