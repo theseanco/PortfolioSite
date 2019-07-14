@@ -20,6 +20,12 @@ const TitleContainer = styled.div`
   align-items: center;
   height: 100px;
   width: 100%;
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 200;
+    margin-bottom: 1.5rem;
+  }
 `
 
 const GridContainer = styled.div`
@@ -77,6 +83,12 @@ const LinkGrid = styled.div`
   justify-content: center;
   flex-direction: column;
   text-align: center;
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 200;
+    margin-bottom: 2rem;
+  }
 `
 
 const HomeLink = styled(Link)`
@@ -104,7 +116,7 @@ const CategoryPage = ({
             <StyledLink to={`/${slug}/${work.slug}`}>
               <FadeOverlayGrid>
                 <LinkGrid>
-                  <h3>{work.title}</h3>
+                  <h2>{work.title}</h2>
                   <p>{work.summary.internal.content}</p>
                 </LinkGrid>
               </FadeOverlayGrid>
