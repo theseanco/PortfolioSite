@@ -27,10 +27,21 @@ const AuthorGrid = styled.div`
 const AuthorDescription = styled.div`
   color: BlanchedAlmond;
   font-weight: 200;
+  line-height: 1.4rem;
+
+  p {
+    margin-bottom: 1.5rem;
+  }
 `
 
 const AuthorTextArea = styled.div`
-  grid-area: authorText
+  grid-area: authorText;
+
+  h1 {
+    font-weight: 200;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
 `
 
 const AuthorImageArea = styled.div`
