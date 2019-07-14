@@ -89,6 +89,11 @@ const LinkGrid = styled.div`
     font-weight: 200;
     margin-bottom: 2rem;
   }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+  }
 `
 
 const HomeLink = styled(Link)`

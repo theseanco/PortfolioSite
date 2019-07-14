@@ -81,6 +81,10 @@ const IconList = styled.ul`
   flex-wrap: wrap;
   margin-top: 1rem;
 
+  li {
+    margin-top: 1rem;
+  }
+
   li:not(:last-child) {
     margin-right: 24px;
   }
@@ -149,6 +153,7 @@ const WorkPage = ({data: {
           }} / >
         </WorkDescription>
         <footer>
+          <p>Built using:</p>
           <IconList>
           {/* Conditional rendering of icons */}
             {technologyIcons ? (
@@ -163,7 +168,7 @@ const WorkPage = ({data: {
           </IconList>
           <InternalLinks>
             <li>
-              <Link to={slug}>
+              <Link to={`/${slug}`}>
                 Back to {categoryName}
               </Link>
             </li>

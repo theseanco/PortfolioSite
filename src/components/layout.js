@@ -79,7 +79,7 @@ const FlexContainer = styled.div`
 	padding: 0 3rem;
 `
 
-const FlexGrowContent = styled.body`
+const FlexGrowContent = styled.main`
 	flex-grow: 1
 `
 
@@ -113,7 +113,7 @@ const Layout = ({ children }) => (
 									{children}
 								</FlexGrowContent>
 								<Footer />
-						</FlexContainer>
+              </FlexContainer>
 					</>
         </ThemeProvider>
       </>
