@@ -21,9 +21,9 @@ const StyledHeader = styled.header`
   padding: 1em 2em;
 
   h1 {
+    display: none;
 
     a {
-      display: none;
       color: White;
       margin: 0;
     }
@@ -36,9 +36,9 @@ const StyledHeader = styled.header`
   ${props => props.theme.media.tablet`
     justify-content: space-between;
     h1 {
+      display: block;
       a {
         color: White;
-        display: block;
         font-size: 2.5rem;
         font-weight: 100;
         letter-spacing: -4px;
@@ -54,7 +54,8 @@ const HeaderLinkList = styled.nav`
   display: flex;
   flex-direction: row;
   margin: 0;
-  justify-content: space-between;
+  justify-content: space-around;
+  width: 100%;
 
   a {
     font-weight: 100;
@@ -65,7 +66,8 @@ const HeaderLinkList = styled.nav`
   }
 
   ${props => props.theme.media.tablet`
-    padding: 0 0.4rem
+    padding: 0 0.4rem;
+    justify-content: space-between;
 
     a {
       width: 100%
@@ -95,7 +97,7 @@ const HeaderSmallHomeLink = styled(Link)`
 `
 
 const HeaderLinkPages = styled.a`
-  display: none
+  display: none;
 
   ${props => props.theme.media.phone`
     color: White;
@@ -169,9 +171,11 @@ const Header = ({ siteTitle }) => (
               </li>
             )
           })}
-            <AboutLink to="/about">
-              About
-            </AboutLink>
+            <li>
+              <AboutLink to="/about">
+                About
+              </AboutLink>
+            </li>
         </HeaderLinkList>
       </StyledHeader>
     )}
