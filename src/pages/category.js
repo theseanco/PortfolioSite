@@ -97,8 +97,20 @@ const LinkGrid = styled.div`
 `
 
 const HomeLink = styled(Link)`
-  display: block;
-  padding-top: 1rem;
+  border: 1px ${props => props.theme.colors.blanchedAlmond} solid;
+  border-radius: 5px;
+  color: ${props => props.theme.colors.blanchedAlmond};
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 2rem;
+  transition: .1s ease-in-out;
+  width: auto;
+
+  &:hover, &:active {
+    background: ${props => props.theme.colors.blanchedAlmond};
+    color: ${props => props.theme.colors.evening};
+    text-decoration: none;
+  }
 `
 
 const CategoryPage = ({

@@ -5,6 +5,7 @@ const colors = {
   cloud: '#98878F',
   sunset: '#985E6D',
   evening: '#192231',
+  blanchedAlmond: '#ffebcd'
 };
 
 const animations = {

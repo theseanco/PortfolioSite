@@ -55,7 +55,14 @@ const SecondPage = ({data}) => (
           }}/>
         </AuthorDescription>
         <footer>
-          <Link to="/">Home</Link>
+          <Link 
+            to="/"
+            state={{
+              noAnimation: true
+            }}
+          >
+            Home
+          </Link>
         </footer>
       </AuthorTextArea>
       <AuthorImageArea>
