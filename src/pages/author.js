@@ -1,8 +1,44 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import styled from 'styled-components'
 import Img from 'gatsby-image'
 
-import './authorStyling.css'
+const AuthorGrid = styled.div`
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-areas:
+  "authorImage"
+  "authorText";
+
+  ${props => props.theme.media.tablet`
+    grid-template-columns: 2fr 1.75fr;
+    grid-template-areas: "authorText authorImage"
+  `}
+`
+
+const AuthorDescription = styled.section`
+  color: BlanchedAlmond;
+  font-weight: 200;
+  line-height: 1.4rem;
+
+  p {
+    margin-bottom: 1.5rem;
+  }
+`
+
+const AuthorTextArea = styled.article`
+  grid-area: authorText;
+
+  h1 {
+    font-weight: 200;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+`
+
+const AuthorImageArea = styled.picture`
+  grid-area: authorImage
+`
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
@@ -10,21 +46,29 @@ import SEO from '../components/seo'
 const SecondPage = ({data}) => (
   <Layout>
     <SEO title="About" />
-    <div className="author-grid-container">
-      <div className="author-text-area">
+    <AuthorGrid>
+      <AuthorTextArea>
         <h1>{data.contentfulAuthor.name}</h1>
-        <div className="author-description">
+        <AuthorDescription>
           <div dangerouslySetInnerHTML={{
             __html: data.contentfulAuthor.bodyText.childMarkdownRemark.html
           }}/>
-        </div>
-        <Link to="/">Home</Link>
-      </div>
-      <div className="author-image-area">
+        </AuthorDescription>
+        <footer>
+          <Link 
+            to="/"
+            state={{
+              noAnimation: true
+            }}
+          >
+            Home
+          </Link>
+        </footer>
+      </AuthorTextArea>
+      <AuthorImageArea>
         <Img fluid={data.contentfulAuthor.headshot.fluid} />
-      </div>
-    </div>
-
+      </AuthorImageArea>
+    </AuthorGrid>
   </Layout>
 )
 

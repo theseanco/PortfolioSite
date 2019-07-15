@@ -2,50 +2,153 @@
 OPTIMIZE: : There is code repetition here, abstract this out into a component
 */
 
-import React from 'react'
-import { Link, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+/*
 
-import SEO from '../components/seo'
+TODO:
 
-//DESTRUCTURE THIS.
-class IndexPage extends React.Component {
+- Redo animation in styled-components
+- Why are inline styles needed, e.g. IndexCategoryImage
+- The AnimateBlur element is messy and could be turned into an overlay
+- Make animations work selectively with page transitions and props
+- Tweak the styles that are an issue:
+  - Text sizes
+  - Article page margins
+  - Other stuff
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      animateText: "doNotDisplay",
-      animateBlur: "category-container",
-      loading: true
-    }
+*/
+
+import React from 'react';
+import { Link, graphql } from 'gatsby';
+import Img from 'gatsby-image';
+import theme from '../theme.js';
+import styled, { ThemeProvider, keyframes } from 'styled-components';
+
+import SEO from '../components/seo';
+
+// overall container
+const FlexContainerIndex = styled.div`
+  background-color: ${props => props.theme.colors.evening};
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+`
+
+// Images under the section cards
+const IndexCategoryImage = styled(Img)`
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+`
+
+// Links on top of the secion cards
+const IndexCategoryLink = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    font-size: 3rem;
+  }
+`
+
+// Overlay for animations
+const IndexCategoryOverlay = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  transition: ${props => props.theme.animations.fadein} ease-in-out;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  &:hover {
+    background-color: ${props => props.theme.colors.sunset};
+    opacity: 0.9;
+    transition: ${props => props.theme.animations.fadein};
+  }
+`
+
+// Animation example
+const blurFadeout = keyframes`
+  0% {
+    filter: blur(5px);
   }
 
-  componentWillMount() {
-    this.setState({loading: true})
+  60% {
+    filter: blur(5px);
   }
 
-  componentDidMount() {
-    this.setState({loading: false})
-    const { state } = this.props.location;
+  100% {
+    filter: blur(0px);
+  }
+`
 
-    /*
-      If state is null, this page has been loaded from a URL, so play the animation. If it is NOT null, it _CURRENTLY_ should not animate as it has been navigated to from within the site.
-    */
-    if (state === null) {
-      this.setState({
-      animateText: "title-splash-bg animate-title",
-      animateBlur: "category-container animate-blur"
-      });
-    } else {
-      this.setState({
-      animateText: "doNotDisplay",
-      animateBlur: "category-container"
-      })
-    }
+const CategoryContainerAnimated = styled.div`
+  animation-duration: calc(${props => props.theme.animations.revealAnimation} + 1.5s);
+  animation-name: ${props => {
+    if (props.noAnimation) return 'none'
+    return blurFadeout;
+  }};
+  animation-fill-mode: forwards;
+
+  height: 100%;
+  margin: 1rem;
+  width: 90%;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+`
+
+const TextOpacity = keyframes`
+  0% {
+    opacity: 1;
+    z-index: 3;
   }
 
-render() {
+  99% {
+    opacity: 0;
+    z-index: 3;
+  }
 
+  100% {
+    opacity: 0;
+    z-index: -99;
+  }
+`
+
+// Intro text
+const AnimateText = styled.div`
+  animation-duration: ${props => props.theme.animations.revealAnimation};
+  animation-name: ${TextOpacity};
+  animation-fill-mode: forwards;
+  animation-delay: 1s;
+  position: fixed;
+  display: ${props => {
+    if (props.noAnimation) return 'none';
+    return 'flex'
+  }};
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  z-index: 3;
+
+  h1 {
+    font-weight: 500;
+    font-size: 5rem;
+  }
+
+  p {
+    font-size: 2rem;
+    font-weight: 100;
+  }
+`
+
+const IndexPage = (props) => {
   const {
       contentfulHomepage: {
         homepageTitle,
@@ -53,79 +156,74 @@ render() {
         categories,
         authorPage
       }
-    } = this.props.data
+    } = props.data
 
-    if(this.state.loading) {
-      return(
-        <div></div>
-      )
-    }
+    const doNotAnimate = props.location && props.location.state ? props.location.state.noAnimation : false
 
+    // console.log(props.location.state.noAnimation)
   return(
-  <div>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+    <>
+    <ThemeProvider theme={theme}>
+      <>
+        <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+        <AnimateText noAnimation={doNotAnimate}>
+          <h1>Sean Cotterill</h1>
+          <p>{homepageSubtitle}</p>
+        </AnimateText>
+        <FlexContainerIndex>
+          {
+            categories.map((data) => {
+              return (
+                <CategoryContainerAnimated
+                  key={data.id}
+                  noAnimation={doNotAnimate}
+                >
+                  <IndexCategoryImage style={{position: `absolute`}} fluid={data.categoryPicture.fluid} />
+                  <Link
+                    to={`/${data.slug}`}
+                    style={{
+                      height: `100%`,
+                      width: `100%`,
+                      textDecoration: `none`
+                    }}>
+                    <IndexCategoryOverlay>
+                      <IndexCategoryLink>
+                        <h2> {data.categoryName} </h2>
+                      </IndexCategoryLink>
+                    </IndexCategoryOverlay>
+                  </Link>
+                </CategoryContainerAnimated>
+              )
+            })
+          }
 
-    <div className={this.state.animateText}>
-      <h1 style={{fontSize: '4rem', fontWeight: 500}}>Sean Cotterill</h1>
-      <h2>{homepageSubtitle}</h2>
-      {/*
-        this.props.location.state.animated === null ? <div> No animation </div> : <div> Animation </div>
-      */}
-    </div>
-
-    <div className="flex-container-index">
-      {
-        categories.map((data) => {
-          return (
-            <div
-              className={this.state.animateBlur}
-              key={data.id}
+          <CategoryContainerAnimated
+            key={authorPage.id}
+            noAnimation={doNotAnimate}
+          >
+          <IndexCategoryImage style={{position: `absolute`}} fluid={authorPage.sectionCardPhoto.fluid} />
+            <Link
+              to={`/${authorPage.slug}`}
+              style={{
+                      height: `100%`,
+                      width: `100%`,
+                      textDecoration: `none`
+                    }}
             >
-              <Img className="index-category-image" style={{position: `absolute`}} fluid={data.categoryPicture.fluid} />
-              <Link
-                to={data.slug}
-                style={{
-                  height: `100%`,
-                  width: `100%`,
-                  textDecoration: `none`
-                }}>
-                <div className="fade-overlay">
-                  <div className="link">
-                    <h3> {data.categoryName} </h3>
-                  </div>
-                </div>
+              <IndexCategoryOverlay>
+                <IndexCategoryLink>
+                  <h2 key={authorPage.id}>
+                    About
+                  </h2>
+                </IndexCategoryLink>
+              </IndexCategoryOverlay>
               </Link>
-            </div>
-          )
-        })
-      }
-
-      <div
-        className={this.state.animateBlur}
-        key={authorPage.id}
-      >
-      <Img className="index-category-image" style={{position: `absolute`}} fluid={authorPage.sectionCardPhoto.fluid} />
-        <Link
-          to={authorPage.slug}
-          style={{
-                  height: `100%`,
-                  width: `100%`,
-                  textDecoration: `none`
-                }}
-        >
-          <div className="fade-overlay">
-            <div className="link">
-              <h3 key={authorPage.id} className="about">
-                About
-              </h3>
-            </div>
-          </div>
-          </Link>
-      </div>
-    </div>
-    </div>
+          </CategoryContainerAnimated>
+        </FlexContainerIndex>
+      </>
+      </ThemeProvider>
+    </>
   )
-}
 }
 
 export const query = graphql`
