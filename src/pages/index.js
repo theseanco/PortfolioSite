@@ -61,13 +61,13 @@ const IndexCategoryOverlay = styled.div`
   position: absolute;
   height: 100%;
   width: 100%;
-  transition: var(--fadein) ease-out;
+  transition: ${props => props.theme.animations.fadein} ease-in-out;
   background-color: rgba(0, 0, 0, 0.5);
 
   &:hover {
     background-color: ${props => props.theme.colors.sunset};
     opacity: 0.9;
-    transition: ${props => props.theme.animations.fadein} ease-in;
+    transition: ${props => props.theme.animations.fadein};
   }
 `
 

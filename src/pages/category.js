@@ -64,7 +64,7 @@ const FadeOverlayGrid = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  transition: var(--fadein) ease-out;
+  transition: ${props => props.theme.animations.fadein} ease-in-out;
   background-color: rgba(0, 0, 0, 0.65);
 
   &:hover {
