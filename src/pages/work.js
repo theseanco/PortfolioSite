@@ -75,19 +75,16 @@ const WorkTextContainer = styled.div`
   }
 `
 
-const IconList = styled.ul`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-top: 1rem;
+const IconListNew = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 50px));
+  grid-row-gap: 1rem;
+  margin-bottom: 1rem;
 
-  li {
-    margin-top: 1rem;
-  }
-
-  li:not(:last-child) {
-    margin-right: 24px;
-  }
+  ${props => props.theme.media.tablet`
+  grid-template-columns: repeat(auto-fit, minmax(70px, 70px));
+  grid-row-gap: 1rem;
+  `}
 `
 
 const Icon = styled.img`
@@ -115,6 +112,10 @@ const WorkTitle = styled.h1`
   font-weight: 200;
   line-height: 1.1;
   margin-bottom: 1.56rem;
+`
+
+const BuiltWith = styled.p`
+  margin-bottom: 1rem;
 `
 
 const WorkPage = ({data: {
@@ -153,8 +154,8 @@ const WorkPage = ({data: {
           }} / >
         </WorkDescription>
         <footer>
-          <p>Built using:</p>
-          <IconList>
+          <BuiltWith>Built using:</BuiltWith>
+          <IconListNew>
           {/* Conditional rendering of icons */}
             {technologyIcons ? (
               technologyIcons.map(data => {
@@ -165,7 +166,7 @@ const WorkPage = ({data: {
                 )
               })
               ) : (null)}
-          </IconList>
+          </IconListNew>
           <InternalLinks>
             <li>
               <Link to={`/${slug}`}>
