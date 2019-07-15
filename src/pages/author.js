@@ -1,11 +1,3 @@
-/*
- * TODO:
- *
- * - Semantic markup
- * - layout flex-grow
- *
- */
-
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import styled from 'styled-components'
@@ -24,7 +16,7 @@ const AuthorGrid = styled.div`
   `}
 `
 
-const AuthorDescription = styled.div`
+const AuthorDescription = styled.section`
   color: BlanchedAlmond;
   font-weight: 200;
   line-height: 1.4rem;
@@ -34,7 +26,7 @@ const AuthorDescription = styled.div`
   }
 `
 
-const AuthorTextArea = styled.div`
+const AuthorTextArea = styled.article`
   grid-area: authorText;
 
   h1 {
@@ -44,7 +36,7 @@ const AuthorTextArea = styled.div`
   }
 `
 
-const AuthorImageArea = styled.div`
+const AuthorImageArea = styled.picture`
   grid-area: authorImage
 `
 
@@ -62,7 +54,9 @@ const SecondPage = ({data}) => (
             __html: data.contentfulAuthor.bodyText.childMarkdownRemark.html
           }}/>
         </AuthorDescription>
-        <Link to="/">Home</Link>
+        <footer>
+          <Link to="/">Home</Link>
+        </footer>
       </AuthorTextArea>
       <AuthorImageArea>
         <Img fluid={data.contentfulAuthor.headshot.fluid} />
