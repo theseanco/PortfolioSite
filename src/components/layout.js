@@ -72,6 +72,17 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
+const FlexContainer = styled.div`
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	padding: 0 3rem;
+`
+
+const FlexGrowContent = styled.main`
+	flex-grow: 1
+`
+
 const Layout = ({ children }) => (
   <StaticQuery
     query={graphql`
@@ -94,14 +105,16 @@ const Layout = ({ children }) => (
     render={data => (
       <>
         <ThemeProvider theme={theme}>
-						<div className="master-container">
-              <div className="body-container">
-                <GlobalStyle />
+					<>
+	          <GlobalStyle />
+							<FlexContainer>
 								<Header siteTitle={data.homepageInfo.homepageTitle} />
-								{children}
+								<FlexGrowContent>
+									{children}
+								</FlexGrowContent>
 								<Footer />
-							</div>
-						</div>
+              </FlexContainer>
+					</>
         </ThemeProvider>
       </>
     )}

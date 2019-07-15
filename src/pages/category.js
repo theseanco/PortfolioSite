@@ -20,6 +20,12 @@ const TitleContainer = styled.div`
   align-items: center;
   height: 100px;
   width: 100%;
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 200;
+    margin-bottom: 1.5rem;
+  }
 `
 
 const GridContainer = styled.div`
@@ -58,7 +64,7 @@ const FadeOverlayGrid = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  transition: var(--fadein) ease-out;
+  transition: ${props => props.theme.animations.fadein} ease-in-out;
   background-color: rgba(0, 0, 0, 0.65);
 
   &:hover {
@@ -77,11 +83,34 @@ const LinkGrid = styled.div`
   justify-content: center;
   flex-direction: column;
   text-align: center;
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 200;
+    margin-bottom: 2rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+  }
 `
 
 const HomeLink = styled(Link)`
-  display: block;
-  padding-top: 1rem;
+  border: 1px ${props => props.theme.colors.blanchedAlmond} solid;
+  border-radius: 5px;
+  color: ${props => props.theme.colors.blanchedAlmond};
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 2rem;
+  transition: .1s ease-in-out;
+  width: auto;
+
+  &:hover, &:active {
+    background: ${props => props.theme.colors.blanchedAlmond};
+    color: ${props => props.theme.colors.evening};
+    text-decoration: none;
+  }
 `
 
 const CategoryPage = ({
@@ -104,7 +133,7 @@ const CategoryPage = ({
             <StyledLink to={`/${slug}/${work.slug}`}>
               <FadeOverlayGrid>
                 <LinkGrid>
-                  <h3>{work.title}</h3>
+                  <h2>{work.title}</h2>
                   <p>{work.summary.internal.content}</p>
                 </LinkGrid>
               </FadeOverlayGrid>

@@ -1,7 +1,8 @@
 /*
+ * TODO!
  * - Is H1 tag good for accessibility?
- * - Finish styling
  * - Breakpoints need editing
+ * - Top nav breakpoint flex container styling
  */
 
 import { Link, StaticQuery, graphql } from 'gatsby'
@@ -12,7 +13,7 @@ import styled from 'styled-components'
 // Styles for header
 const StyledHeader = styled.header`
   align-items: center;
-  border-bottom: 2px solid var(--stormy);
+  border-bottom: 2px solid ${props => props.theme.colors.stormy};
   color: White;
   display: flex;
   justify-content: space-around;
@@ -20,8 +21,9 @@ const StyledHeader = styled.header`
   padding: 1em 2em;
 
   h1 {
+    display: none;
+
     a {
-      display: none;
       color: White;
       margin: 0;
     }
@@ -34,9 +36,9 @@ const StyledHeader = styled.header`
   ${props => props.theme.media.tablet`
     justify-content: space-between;
     h1 {
+      display: block;
       a {
         color: White;
-        display: block;
         font-size: 2.5rem;
         font-weight: 100;
         letter-spacing: -4px;
@@ -52,7 +54,8 @@ const HeaderLinkList = styled.nav`
   display: flex;
   flex-direction: row;
   margin: 0;
-  justify-content: space-between;
+  justify-content: space-around;
+  width: 100%;
 
   a {
     font-weight: 100;
@@ -63,7 +66,8 @@ const HeaderLinkList = styled.nav`
   }
 
   ${props => props.theme.media.tablet`
-    padding: 0 0.4rem
+    padding: 0 0.4rem;
+    justify-content: space-between;
 
     a {
       width: 100%
@@ -71,6 +75,8 @@ const HeaderLinkList = styled.nav`
   `}
 
   ${props => props.theme.media.desktop`
+    width: auto;
+
     a {
       padding: 0 1rem;
     }
@@ -93,7 +99,7 @@ const HeaderSmallHomeLink = styled(Link)`
 `
 
 const HeaderLinkPages = styled.a`
-  display: none
+  display: none;
 
   ${props => props.theme.media.phone`
     color: White;
@@ -109,6 +115,14 @@ const AboutLink = styled(Link)`
   font-weight: 100;
   text-decoration: none;
   font-size: 1.25rem;
+`
+
+const PageTitle = styled.h1`
+  display: none;
+
+  ${props => props.theme.media.smallTablet`
+    display: block
+  `}
 `
 
 const Header = ({ siteTitle }) => (
@@ -128,7 +142,7 @@ const Header = ({ siteTitle }) => (
     `}
     render={data => (
       <StyledHeader>
-        <h1>
+        <PageTitle>
           {/*THESE ARE CONDITIONALLY RENDERED BASED ON MEDIA QUERIES!*/}
           <Link
             to="/"
@@ -138,7 +152,7 @@ const Header = ({ siteTitle }) => (
           >
             {siteTitle}
           </Link>
-        </h1>
+        </PageTitle>
 
         <HeaderLinkList>
             <HeaderSmallHomeLink
@@ -159,9 +173,11 @@ const Header = ({ siteTitle }) => (
               </li>
             )
           })}
-            <AboutLink to="/about">
-              About
-            </AboutLink>
+            <li>
+              <AboutLink to="/about">
+                About
+              </AboutLink>
+            </li>
         </HeaderLinkList>
       </StyledHeader>
     )}
