@@ -73,6 +73,3 @@ yarn-error.log
 *.swp
 *.swo
 *~
-
-*.svg
-*.png
