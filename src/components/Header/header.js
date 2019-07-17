@@ -5,10 +5,9 @@
  * - Top nav breakpoint flex container styling
  */
 
-import { Link, StaticQuery, graphql } from 'gatsby'
-import PropTypes from 'prop-types'
-import React from 'react'
-import styled from 'styled-components'
+import { Link, StaticQuery, graphql } from 'gatsby';
+import React from 'react';
+import styled from 'styled-components';
 
 // Styles for header
 const StyledHeader = styled.header`
@@ -46,23 +45,23 @@ const StyledHeader = styled.header`
       }
     }
   `}
-`
+`;
 
 // Style for the links
 const HeaderLinkList = styled.nav`
-  list-style-type: none;
   display: flex;
   flex-direction: row;
-  margin: 0;
   justify-content: space-around;
+  list-style-type: none;
+  margin: 0;
   width: 100%;
 
   a {
-    font-weight: 100;
-    font-size: 1.25rem;
-    padding: 0 1rem;
-    margin: 0;
     color: White;
+    font-size: 1.25rem;
+    font-weight: 100;
+    margin: 0;
+    padding: 0 1rem;
   }
 
   ${props => props.theme.media.tablet`
@@ -81,13 +80,13 @@ const HeaderLinkList = styled.nav`
       padding: 0 1rem;
     }
   `}
-`
+`;
 
 const HeaderSmallHomeLink = styled(Link)`
   color: White;
+  font-size: 1.25rem;
   font-weight: 100;
   text-decoration: none;
-  font-size: 1.25rem;
 
   &:hover {
     color: inherit;
@@ -96,7 +95,7 @@ const HeaderSmallHomeLink = styled(Link)`
   ${props => props.theme.media.tablet`
     display: none;
   `}
-`
+`;
 
 const HeaderLinkPages = styled.a`
   display: none;
@@ -108,14 +107,14 @@ const HeaderLinkPages = styled.a`
     font-weight: 100;
     text-decoration: none;
   `}
-`
+`;
 
 const AboutLink = styled(Link)`
   color: white;
+  font-size: 1.25rem;
   font-weight: 100;
   text-decoration: none;
-  font-size: 1.25rem;
-`
+`;
 
 const PageTitle = styled.h1`
   display: none;
@@ -123,7 +122,7 @@ const PageTitle = styled.h1`
   ${props => props.theme.media.smallTablet`
     display: block
   `}
-`
+`;
 
 const Header = ({ siteTitle }) => (
   <StaticQuery
@@ -143,7 +142,7 @@ const Header = ({ siteTitle }) => (
     render={data => (
       <StyledHeader>
         <PageTitle>
-          {/*THESE ARE CONDITIONALLY RENDERED BASED ON MEDIA QUERIES!*/}
+          {/* THESE ARE CONDITIONALLY RENDERED BASED ON MEDIA QUERIES! */}
           <Link
             to="/"
             state={{
@@ -155,33 +154,31 @@ const Header = ({ siteTitle }) => (
         </PageTitle>
 
         <HeaderLinkList>
-            <HeaderSmallHomeLink
-              className="header-small-home-link"
-              to="/"
-              state={{
-                noAnimation: true,
-              }}
-            >
+          <HeaderSmallHomeLink
+            className="header-small-home-link"
+            to="/"
+            state={{
+              noAnimation: true,
+            }}
+          >
               Home
-            </HeaderSmallHomeLink>
-          {data.contentfulAuthor.linkList.links.map(data => {
-            return (
-              <li key={`header-${data.LinkType}`}>
-                <HeaderLinkPages href={data.Link}>
-                  {data.LinkType}
-                </HeaderLinkPages>
-              </li>
-            )
-          })}
-            <li>
-              <AboutLink to="/about">
-                About
-              </AboutLink>
+          </HeaderSmallHomeLink>
+          {data.contentfulAuthor.linkList.links.map(listData => (
+            <li key={`header-${listData.LinkType}`}>
+              <HeaderLinkPages href={listData.Link}>
+                {listData.LinkType}
+              </HeaderLinkPages>
             </li>
+          ))}
+          <li>
+            <AboutLink to="/about">
+                About
+            </AboutLink>
+          </li>
         </HeaderLinkList>
       </StyledHeader>
     )}
   />
-)
+);
 
-export default Header
+export default Header;

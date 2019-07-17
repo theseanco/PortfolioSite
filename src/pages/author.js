@@ -1,7 +1,10 @@
-import React from 'react'
-import { Link, graphql } from 'gatsby'
-import styled from 'styled-components'
-import Img from 'gatsby-image'
+import React from 'react';
+import { Link, graphql } from 'gatsby';
+import styled from 'styled-components';
+import Img from 'gatsby-image';
+
+import Layout from '../components/layout';
+import SEO from '../components/seo';
 
 const AuthorGrid = styled.div`
   display: grid;
@@ -14,7 +17,7 @@ const AuthorGrid = styled.div`
     grid-template-columns: 2fr 1.75fr;
     grid-template-areas: "authorText authorImage"
   `}
-`
+`;
 
 const AuthorDescription = styled.section`
   color: BlanchedAlmond;
@@ -24,26 +27,23 @@ const AuthorDescription = styled.section`
   p {
     margin-bottom: 1.5rem;
   }
-`
+`;
 
 const AuthorTextArea = styled.article`
   grid-area: authorText;
 
   h1 {
-    font-weight: 200;
     font-size: 2rem;
+    font-weight: 200;
     margin-bottom: 1.5rem;
   }
-`
+`;
 
 const AuthorImageArea = styled.picture`
   grid-area: authorImage
-`
+`;
 
-import Layout from '../components/layout'
-import SEO from '../components/seo'
-
-const SecondPage = ({data}) => (
+const SecondPage = ({ data }) => (
   <Layout>
     <SEO title="About" />
     <AuthorGrid>
@@ -51,14 +51,15 @@ const SecondPage = ({data}) => (
         <h1>{data.contentfulAuthor.name}</h1>
         <AuthorDescription>
           <div dangerouslySetInnerHTML={{
-            __html: data.contentfulAuthor.bodyText.childMarkdownRemark.html
-          }}/>
+            __html: data.contentfulAuthor.bodyText.childMarkdownRemark.html,
+          }}
+          />
         </AuthorDescription>
         <footer>
-          <Link 
+          <Link
             to="/"
             state={{
-              noAnimation: true
+              noAnimation: true,
             }}
           >
             Home
@@ -70,7 +71,7 @@ const SecondPage = ({data}) => (
       </AuthorImageArea>
     </AuthorGrid>
   </Layout>
-)
+);
 
 export const query = graphql`
   {
@@ -99,6 +100,6 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
-export default SecondPage
+export default SecondPage;

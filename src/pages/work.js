@@ -2,9 +2,9 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 
+import styled from 'styled-components';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-import styled from 'styled-components';
 
 const WorkGridContainer = styled.main`
   display: grid;
@@ -22,7 +22,7 @@ const WorkGridContainer = styled.main`
   ${props => props.theme.media.desktop`
     margin: 0 2rem;
   `}
-`
+`;
 
 const WorkArticle = styled.article`
   grid-area: workText
@@ -36,29 +36,29 @@ const WorkArticle = styled.article`
       text-align: left;
     }
   `}
-`
+`;
 
 const ExternalLinks = styled.div`
   display: flex;
 
   a {
-    margin-right: 2rem;
     margin-bottom: 0.5rem;
+    margin-right: 2rem;
   }
-`
+`;
 
 const WorkDescription = styled.section`
   color: BlanchedAlmond;
   font-weight: 200;
-`
+`;
 
 const WorkTextContainer = styled.div`
   blockquote {
+    border-left: 0.39rem solid hsla(0,0%,0%,0.13);
+    color: hsla(0,0%,0%,0.6);
+    margin-bottom: 1.56rem;
     margin-right: 1.56rem;
     padding-left: 1.17rem;
-    margin-bottom: 1.56rem;
-    color: hsla(0,0%,0%,0.6);
-    border-left: 0.39rem solid hsla(0,0%,0%,0.13);
 
     p {
       font-size: 1.4rem;
@@ -68,24 +68,24 @@ const WorkTextContainer = styled.div`
 
   p {
     font-size: 1.1rem;
-    margin-bottom: 1.56rem;
-    margin-block-start: 1rem;
     line-height: 1.56rem;
     margin-block-end: 1rem;
+    margin-block-start: 1rem;
+    margin-bottom: 1.56rem;
   }
-`
+`;
 
 const IconListNew = styled.ul`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(50px, 50px));
   grid-row-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 50px));
   margin-bottom: 1rem;
 
   ${props => props.theme.media.tablet`
   grid-template-columns: repeat(auto-fit, minmax(70px, 70px));
   grid-row-gap: 1rem;
   `}
-`
+`;
 
 const Icon = styled.img`
   height: 35px;
@@ -95,45 +95,47 @@ const Icon = styled.img`
     height: 50px;
     width: 50px;
   `}
-`
+`;
 
 const InternalLinks = styled.ul`
   li {
     margin-top: 0.5rem
   }
-`
+`;
 
 const WorkImage = styled.picture`
   grid-area: workImage
-`
+`;
 
 const WorkTitle = styled.h1`
   font-size: 2.5rem;
   font-weight: 200;
   line-height: 1.1;
   margin-bottom: 1.56rem;
-`
+`;
 
 const BuiltWith = styled.p`
   margin-bottom: 1rem;
-`
+`;
 
-const WorkPage = ({data: {
-  getParentCategory: {
-    categoryName,
-    slug
+const WorkPage = ({
+  data: {
+    getParentCategory: {
+      categoryName,
+      slug,
+    },
+    getWorkInfo: {
+      description,
+      featuredImage,
+      link,
+      githubLink,
+      technologies,
+      title,
+      technologyIcons,
+    },
   },
-  getWorkInfo: {
-    description,
-    featuredImage,
-    link,
-    githubLink,
-    technologies,
-    title,
-    technologyIcons
-  }
-}}) => (
-    <Layout>
+}) => (
+  <Layout>
     <SEO title={title} />
     <WorkGridContainer>
       <WorkArticle>
@@ -141,44 +143,48 @@ const WorkPage = ({data: {
           <WorkTitle>{title}</WorkTitle>
           <ExternalLinks>
             {
-              link ? <a href={link} target="_blank" rel="noopener noreferrer" >Visit Site</a> : null
+              link ? <a href={link} target="_blank" rel="noopener noreferrer">Visit Site</a> : null
             }
             {
-              githubLink ? <a href={githubLink}  target="_blank" rel="noopener noreferrer">GitHub Repo</a> : null
+              githubLink ? <a href={githubLink} target="_blank" rel="noopener noreferrer">GitHub Repo</a> : null
             }
           </ExternalLinks>
         </header>
         <WorkDescription>
           <WorkTextContainer dangerouslySetInnerHTML={{
-            __html: description.childMarkdownRemark.html
-          }} / >
+            __html: description.childMarkdownRemark.html,
+          }}
+          />
         </WorkDescription>
         <footer>
           <BuiltWith>Built using:</BuiltWith>
           <IconListNew>
-          {/* Conditional rendering of icons */}
+            {/* Conditional rendering of icons */}
             {technologyIcons ? (
-              technologyIcons.map(data => {
-                return (
-                  <li key={data.id}>
-                    <Icon src={`https://${data.file.url}`} alt={data.title} />
-                  </li>
-                )
-              })
-              ) : (null)}
+              technologyIcons.map(data => (
+                <li key={data.id}>
+                  <Icon src={`https://${data.file.url}`} alt={data.title} />
+                </li>
+              ))
+            ) : (null)}
           </IconListNew>
           <InternalLinks>
             <li>
               <Link to={`/${slug}`}>
-                Back to {categoryName}
+                Back to
+                {' '}
+                {categoryName}
               </Link>
             </li>
             <li>
-              <Link to="/"
+              <Link
+                to="/"
                 state={{
-                  noAnimation: true
+                  noAnimation: true,
                 }}
-              >Home</Link>
+              >
+Home
+              </Link>
             </li>
           </InternalLinks>
         </footer>
@@ -188,7 +194,7 @@ const WorkPage = ({data: {
       </WorkImage>
     </WorkGridContainer>
   </Layout>
-)
+);
 
 export const query = graphql`
   query getWorkContents(
@@ -229,6 +235,6 @@ export const query = graphql`
         categoryName
       }
     }
-`
+`;
 
-export default WorkPage
+export default WorkPage;
