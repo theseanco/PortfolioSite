@@ -2,18 +2,17 @@
  *   todo:
  *   - Is list of imgs accessible?
  */
-import React from 'react'
-import PropTypes from 'prop-types'
-import { StaticQuery, graphql } from 'gatsby'
-import styled from 'styled-components'
+import React from 'react';
+import { StaticQuery, graphql } from 'gatsby';
+import styled from 'styled-components';
 
 // Overall footer conatainer
 const Footer = styled.footer`
   align-items: center;
   border-top: 2px solid ${props => props.theme.colors.stormy};
   display: flex;
-  font-weight: 100;
   font-size: 1em;
+  font-weight: 100;
   height: 3rem;
   justify-content: space-around;
   margin-top: 2rem;
@@ -21,13 +20,13 @@ const Footer = styled.footer`
 
   /* Uses media queries for desktop styling */
   ${props => props.theme.media.desktop`
-		align-items: center;
-		font-size: 1em;
-		height: 3rem;
-		justify-content: space-between;
-		padding: 1em 2em;
-	`}
-`
+    align-items: center;
+    font-size: 1em;
+    height: 3rem;
+    justify-content: space-between;
+    padding: 1em 2em;
+  `}
+`;
 
 // Display my name and date
 const FooterInfo = styled.div`
@@ -37,7 +36,7 @@ const FooterInfo = styled.div`
     color: White;
     display: block;
   `}
-`
+`;
 
 const FooterLeftContainer = styled.div`
   display: flex;
@@ -45,20 +44,20 @@ const FooterLeftContainer = styled.div`
   flex-wrap: wrap;
   margin: 0;
   padding: 0;
-`
+`;
 
 
 // Styling for list of project build icons
 const FooterIcons = styled.ul`
   
   display: flex;
-  list-style-type: none;
   flex-direction: row;
+  list-style-type: none;
 
   li:not(:last-child) {
     margin-right: 10px;
   }
-`
+`;
 
 // The build icons themselves
 const FooterIcon = styled.img`
@@ -70,7 +69,7 @@ const FooterIcon = styled.img`
     height: 1.5rem;
     width: 1.5rem;
   `}
-`
+`;
 
 const CreatedUsing = styled.span`
   align-items: center;
@@ -78,7 +77,7 @@ const CreatedUsing = styled.span`
   display: flex;
   justify-content: center;
   margin-right: 1rem;
-`
+`;
 
 const PageFooter = ({ data }) => (
   <StaticQuery
@@ -95,7 +94,7 @@ const PageFooter = ({ data }) => (
         }
       }
     `}
-    render={data => (
+    render={renderData => (
       <>
         <Footer>
           <FooterInfo>Sean Cotterill, 2019</FooterInfo>
@@ -104,22 +103,20 @@ const PageFooter = ({ data }) => (
               Created using:
             </CreatedUsing>
             <FooterIcons>
-              {data.builtIcons.technologyIcons.map(data => {
-                return (
-                  <li key={data.id}>
-                    <FooterIcon
-                      src={`https://${data.file.url}`}
-                      alt={data.title}
-                    />
-                  </li>
-                )
-              })}
+              {renderData.builtIcons.technologyIcons.map(iconData => (
+                <li key={iconData.id}>
+                  <FooterIcon
+                    src={`https://${iconData.file.url}`}
+                    alt={iconData.title}
+                  />
+                </li>
+              ))}
             </FooterIcons>
           </FooterLeftContainer>
         </Footer>
       </>
     )}
   />
-)
+);
 
-export default PageFooter
+export default PageFooter;
