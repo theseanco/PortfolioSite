@@ -118,6 +118,23 @@ const TextOpacity = keyframes`
   }
 `;
 
+const TextOpacitySoft = keyframes`
+  0% {
+    opacity: 0.9;
+    z-index: 3;
+  }
+
+  99% {
+    opacity: 0;
+    z-index: 3;
+  }
+
+  100% {
+    opacity: 0;
+    z-index: -99;
+  }
+`;
+
 // Intro text
 const AnimateText = styled.div`
   align-items: center;
@@ -136,6 +153,11 @@ const AnimateText = styled.div`
   width: 100vw;
   z-index: 3;
 
+  @supports (-ms-ime-align: auto) {
+    animation-name: ${TextOpacitySoft};
+    background-color: ${props => props.theme.colors.evening};
+  }
+
   h1 {
     font-size: 5rem;
     font-weight: 500;
@@ -144,6 +166,9 @@ const AnimateText = styled.div`
   p {
     font-size: 2rem;
     font-weight: 100;
+    line-height: 2.5rem;
+    margin: 1rem;
+    text-align: center;
   }
 `;
 
