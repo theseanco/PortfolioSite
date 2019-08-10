@@ -5,6 +5,7 @@
   ],
   "rules": {
     "better-styled-components/sort-declarations-alphabetically": 2,
-    "react/jsx-filename-extension": 0
+    "react/jsx-filename-extension": 0,
+    "linebreak-style": 0
   }
 }
