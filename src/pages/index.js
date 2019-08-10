@@ -166,6 +166,9 @@ const AnimateText = styled.div`
   p {
     font-size: 2rem;
     font-weight: 100;
+    line-height: 2.5rem;
+    margin: 1rem;
+    text-align: center;
   }
 `;
 
