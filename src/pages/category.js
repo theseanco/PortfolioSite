@@ -75,8 +75,10 @@ const FadeOverlayGrid = styled.div`
   }
 `;
 
-const LinkGrid = styled.div`
+const LinkGrid = styled.button`
   align-items: center;
+  background-color: rgba(0,0,0,0);
+  border: none;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -133,9 +135,9 @@ const CategoryPage = ({
         (
           <WorkImageContainer key={work.id}>
             <WorkImage fluid={work.featuredImage.fluid} />
-            <StyledLink to={`/${slug}/${work.slug}`}>
+            <StyledLink to={`/${slug}/${work.slug}`} tabindex={-1}>
               <FadeOverlayGrid>
-                <LinkGrid>
+                <LinkGrid tabindex={0}>
                   <h2>{work.title}</h2>
                   <p>{work.summary.internal.content}</p>
                 </LinkGrid>
