@@ -155,7 +155,8 @@ const AnimateText = styled.div`
 
   @supports (-ms-ime-align: auto) {
     animation-name: ${TextOpacitySoft};
-    background-color: ${props => props.theme.colors.evening};
+    background: ${props => props.theme.colors.evening};
+    background: linear-gradient(180deg, rgba(25,34,49,1) 13%, rgba(0,0,0,1) 100%); 
   }
 
   h1 {
