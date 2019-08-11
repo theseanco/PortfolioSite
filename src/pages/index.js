@@ -43,8 +43,10 @@ const IndexCategoryImage = styled(Img)`
 `;
 
 // Links on top of the secion cards
-const IndexCategoryLink = styled.div`
+const IndexCategoryLink = styled.button`
   align-items: center;
+  background-color: rgba(0,0,0,0);
+  border: none;
   display: flex;
   height: 100%;
   justify-content: center;
@@ -210,9 +212,10 @@ const IndexPage = (props) => {
                     width: '100%',
                     textDecoration: 'none',
                   }}
+                  tabIndex={-1}
                 >
                   <IndexCategoryOverlay>
-                    <IndexCategoryLink>
+                    <IndexCategoryLink tabIndex={0}>
                       <h2>
                         {' '}
                         {data.categoryName}
@@ -237,9 +240,10 @@ const IndexPage = (props) => {
                   width: '100%',
                   textDecoration: 'none',
                 }}
+                tabIndex={-1}
               >
                 <IndexCategoryOverlay>
-                  <IndexCategoryLink>
+                  <IndexCategoryLink tabIndex={0}>
                     <h2 key={authorPage.id}>
                     About
                     </h2>
