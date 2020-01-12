@@ -157,7 +157,7 @@ const WorkPage = ({
           />
         </WorkDescription>
         <footer>
-          <BuiltWith>Built using:</BuiltWith>
+          <BuiltWith>Technologies Used:</BuiltWith>
           <IconListNew>
             {/* Conditional rendering of icons */}
             {technologyIcons ? (
