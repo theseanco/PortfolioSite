@@ -97,7 +97,7 @@ const PageFooter = ({ data }) => (
     render={renderData => (
       <>
         <Footer>
-          <FooterInfo>Sean Cotterill, 2020</FooterInfo>
+          <FooterInfo>Sean Cotterill, 2025</FooterInfo>
           <FooterLeftContainer>
             <CreatedUsing>
               Created using:
